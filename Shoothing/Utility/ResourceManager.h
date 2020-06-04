@@ -18,9 +18,10 @@ private:
 public:
 	static ResourceManager* Instance();
 	static void DestroyInstance();
+	void Release();
 
 	int LoadImageResource(string fileName);
-	void LoadAminImageResource(string fileName, int allNum, int xNum, int yNum, int xSize, int ySize,int* handle);
+	int* LoadAminImageResource(string fileName, int allNum, int xNum, int yNum, int xSize, int ySize);
 	int LoadSoundResource(string fileName);
 private:
 	//リソースのハンドラを格納する

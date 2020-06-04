@@ -63,6 +63,11 @@ float Vector2::Distance(const Vector2& v1, const Vector2& v2)
 	return sqrt((x * x) + (y * y));
 }
 
+Vector2 Vector2::Zero()
+{
+	return Vector2();
+}
+
 /// <summary>
 /// ’P€‰‰Zq +
 /// </summary>

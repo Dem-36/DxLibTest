@@ -31,6 +31,9 @@
     <Filter Include="ソース ファイル\Utility">
       <UniqueIdentifier>{198edd28-f42b-4e95-bf8a-eea47a416d34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\AI">
+      <UniqueIdentifier>{bb2ae3c1-a889-40b2-a572-c4932d01cc5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -100,6 +103,9 @@
       <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
     <ClCompile Include="FadeManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaseAI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -195,6 +201,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="FadeManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>ヘッダー ファイル\GameObject\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaseAI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

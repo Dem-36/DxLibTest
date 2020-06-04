@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChaseAI.cpp" />
     <ClCompile Include="FadeManager.cpp" />
     <ClCompile Include="GameObject\BackGround.cpp" />
     <ClCompile Include="GameObject\Bomb.cpp" />
@@ -176,6 +177,8 @@
     <ClCompile Include="Utility\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
+    <ClInclude Include="ChaseAI.h" />
     <ClInclude Include="FadeManager.h" />
     <ClInclude Include="Utility\Algorithm.h" />
     <ClInclude Include="GameObject\BackGround.h" />

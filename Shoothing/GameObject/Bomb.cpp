@@ -1,7 +1,7 @@
 #include "Bomb.h"
 #include"../Utility/ResourceManager.h"
 
-Bomb::Bomb(Transform* transform)
+Bomb::Bomb(const Transform* transform)
 {
 	this->transform.position = transform->position;
 	tag = "Bomb";
@@ -11,12 +11,13 @@ Bomb::Bomb(Transform* transform)
 
 Bomb::~Bomb()
 {
+	
 }
 
 void Bomb::Initialize()
 {
-	RESOURCE_MANAGER->LoadAminImageResource(
-		"Resource\\img\\BOMB.png", 8, 8, 1, 96, 96, handle);
+	handle = RESOURCE_MANAGER->LoadAminImageResource(
+		"Resource\\img\\BOMB.png", 8, 8, 1, 96, 96);
 	snd = RESOURCE_MANAGER->LoadSoundResource("Resource\\sound\\bomb.mp3");
 
 	PlaySoundMem(snd, DX_PLAYTYPE_BACK);

@@ -7,6 +7,8 @@
 #include"../GameObject/Bomb.h"
 #include"SceneManager.h"
 #include"Title.h"
+#include"../ChaseAI.h"
+#include"../GameObject/Particle.h"
 
 void GameScene::Initialize()
 {
@@ -29,8 +31,7 @@ void GameScene::Initialize()
 	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 32, WINDOW_HEIGHT / 2.0f));
 
 	spawner->OnSpawn()->Subscribe([this](Vector2 position) {
-		Enemy* enemy = new Enemy(position);
-		enemy->SetTarget(player);
+		Enemy* enemy = new Enemy(new ChaseAI(player),position);
 		enemy->OnHit()->Subscribe([this](Transform transform) {
 			score->AddScore();
 			AddGameObject(new Bomb(&transform));

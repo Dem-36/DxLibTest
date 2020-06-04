@@ -9,39 +9,30 @@ Enemy::Enemy()
 	tag = "Enemy";
 }
 
-Enemy::Enemy(Vector2 position)
+Enemy::Enemy(AI* ai,Vector2 position)
+	:ai(ai)
 {
 	transform.position = position;
 	tag = "Enemy";
 }
 
+
 Enemy::~Enemy()
 {
+	delete ai;
 }
 
 void Enemy::Initialize()
 {
 	transform.angle = 0;
 	transform.spriteSize = Vector2(64, 64);
-	velocity = Vector2();
 	handle = RESOURCE_MANAGER->LoadImageResource("Resource\\img\\zombie.png");
 	soundHandle = RESOURCE_MANAGER->LoadSoundResource("Resource\\sound\\damage1.mp3");
 }
 
 void Enemy::Update()
 {
-	if (target == NULL)
-		return;
-
-	float x = target->transform.position.x - transform.position.x;
-	float y = target->transform.position.y - transform.position.y;
-
-	transform.angle = atan2(y, x);
-
-	Vector2 moveVelocity = Vector2(1, 0);
-	velocity = Algorithm::RotationMatrix_Z(moveVelocity, transform.angle);
-
-	transform.position += velocity;
+	ai->Think(this);
 }
 
 void Enemy::Draw(Renderer* renderer)
@@ -56,11 +47,6 @@ void Enemy::OnHitBox(GameObject* other)
 		PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
 		Destroy();
 	}
-}
-
-void Enemy::SetTarget(GameObject* target)
-{
-	this->target = target;
 }
 
 IObservable<Transform>* Enemy::OnHit()

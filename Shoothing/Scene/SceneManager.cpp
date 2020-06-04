@@ -105,6 +105,7 @@ void SceneManager::Release()
 	SAFE_RELEASE(renderer);
 	RANDOM->DestroyInstance();
 	INPUT_MANAGER->DestroyInstance();
+	RESOURCE_MANAGER->Release();
 	RESOURCE_MANAGER->DestroyInstance();
 	GAMEOBJECT_MANAGER->DestroyInstance();
 	this->DestroyInstance();

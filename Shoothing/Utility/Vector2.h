@@ -13,6 +13,7 @@ public:
 	float Dot(const Vector2& v) const;//“àÏ
 
 	static float Distance(const Vector2& v1, const Vector2& v2);
+	static Vector2 Zero();
 
 	//’P€‰‰Zq
 	Vector2 operator +()const;

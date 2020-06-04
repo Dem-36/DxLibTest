@@ -6,7 +6,7 @@
 class Bomb:public GameObject
 {
 public:
-	Bomb(Transform* transform);
+	Bomb(const Transform* transform);
 	~Bomb();
 
 	void Initialize();
@@ -14,7 +14,7 @@ public:
 	void Draw(Renderer* renderer);
 
 private:
-	int handle[8];
+	int* handle;
 	int snd;
 	int index;
 

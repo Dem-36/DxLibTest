@@ -2,7 +2,7 @@
 #include"Utility/ResourceManager.h"
 FadeManager::FadeManager()
 	:type(FADE_TYPE::NONE), alpha(255) {
-	handle = RESOURCE_MANAGER->LoadImageResource("Resource\\img\\black.png");
+	handle = RESOURCE_MANAGER->LoadImageResource("black.png");    
 };
 
 void FadeManager::FadeIn()

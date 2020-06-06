@@ -22,9 +22,9 @@ private:
 private:
 	Subject<Transform> shotSubject;
 	Vector2 velocity;
-	int handle;
 	int soundHandle;
 	int waitFrame;
+	int* h;
 };
 
 #endif

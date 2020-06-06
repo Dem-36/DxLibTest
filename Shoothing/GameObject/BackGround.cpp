@@ -14,8 +14,8 @@ BackGround::~BackGround()
 
 void BackGround::Initialize()
 {
-	handle = RESOURCE_MANAGER->LoadImageResource("Resource\\img\\bg.png");
-	soundHandle = RESOURCE_MANAGER->LoadSoundResource ("Resource\\sound\\nv_01.mp3");
+	handle = RESOURCE_MANAGER->LoadImageResource("bg.png");
+	soundHandle = RESOURCE_MANAGER->LoadSoundResource ("nv_01.mp3");
 	PlaySoundMem(soundHandle, DX_PLAYTYPE_LOOP);
 }
 

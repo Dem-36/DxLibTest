@@ -19,7 +19,7 @@ Bullet::~Bullet()
 void Bullet::Initialize()
 {
 	transform.spriteSize = Vector2(16, 16);
-	handle = RESOURCE_MANAGER->LoadImageResource("Resource\\img\\bullet.png");
+	handle = RESOURCE_MANAGER->LoadImageResource("bullet.png");
 }
 
 void Bullet::Update()

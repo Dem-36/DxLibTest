@@ -9,6 +9,7 @@ public:
 	AI():position(Vector2::Zero()),velocity(Vector2::Zero()) {
 
 	}
+	//指定したオブジェクトのTransform情報を書き換える
 	virtual void Think(GameObject* object) = 0;
 protected:
 	Vector2 position;

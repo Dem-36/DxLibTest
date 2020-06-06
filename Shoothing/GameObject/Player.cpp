@@ -19,8 +19,8 @@ void Player::Initialize()
 	transform.position = Vector2(320, 240);
 	transform.spriteSize = Vector2(64, 64);
 	velocity = Vector2(5, 0);
-	handle = RESOURCE_MANAGER->LoadImageResource("Resource\\img\\player.png");
-	soundHandle = RESOURCE_MANAGER->LoadSoundResource("Resource\\sound\\laser2.mp3");
+	soundHandle = RESOURCE_MANAGER->LoadSoundResource("laser2.mp3");
+	h = RESOURCE_MANAGER->LoadAminImageResource("Player.png", 54, 9, 6, 64, 64);
 	waitFrame = 0;
 }
 
@@ -41,7 +41,8 @@ void Player::Update()
 
 void Player::Draw(Renderer* renderer)
 {
-	renderer->DrawRotaGraph(transform.position, 1.0f, transform.angle, handle);
+	static int i =0;
+		renderer->DrawRotaGraph(transform.position, 1.0f, transform.angle, h[i], TRUE, TRUE);
 }
 
 void Player::Move()

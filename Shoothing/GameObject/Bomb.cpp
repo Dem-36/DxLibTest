@@ -17,8 +17,8 @@ Bomb::~Bomb()
 void Bomb::Initialize()
 {
 	handle = RESOURCE_MANAGER->LoadAminImageResource(
-		"Resource\\img\\BOMB.png", 8, 8, 1, 96, 96);
-	snd = RESOURCE_MANAGER->LoadSoundResource("Resource\\sound\\bomb.mp3");
+		"BOMB.png", 8, 8, 1, 96, 96);
+	snd = RESOURCE_MANAGER->LoadSoundResource("bomb.mp3");
 
 	PlaySoundMem(snd, DX_PLAYTYPE_BACK);
 }

@@ -34,6 +34,9 @@
     <Filter Include="ヘッダー ファイル\GameObject\AI">
       <UniqueIdentifier>{bb2ae3c1-a889-40b2-a572-c4932d01cc5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameObject\AI">
+      <UniqueIdentifier>{3938f529-35e5-4a94-914c-f632c31f3e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -106,7 +109,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ChaseAI.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\GameObject\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +210,9 @@
       <Filter>ヘッダー ファイル\GameObject\AI</Filter>
     </ClInclude>
     <ClInclude Include="ChaseAI.h">
+      <Filter>ヘッダー ファイル\GameObject\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

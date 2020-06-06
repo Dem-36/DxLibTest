@@ -1,5 +1,8 @@
 #include "ResourceManager.h"
 
+#define IMG_PATH "Resource\\img\\"
+#define SND_PATH "Resource\\sound\\"
+
 ResourceManager* ResourceManager::instance = NULL;
 
 ResourceManager* ResourceManager::Instance()
@@ -19,6 +22,7 @@ void ResourceManager::DestroyInstance()
 	instance = NULL;
 }
 
+//連番画像を開放する
 void ResourceManager::Release()
 {
 	for (auto itr = animMap.begin(); itr != animMap.end(); ++itr) {
@@ -26,15 +30,17 @@ void ResourceManager::Release()
 	}
 }
 
+//画像を登録する
 int ResourceManager::LoadImageResource(string fileName)
 {
 	//指定したリソースが存在するならハンドルを返す
 	if (resourceMap.find(fileName) == resourceMap.end())
-		resourceMap[fileName] = LoadGraph(fileName.c_str());
+		resourceMap[fileName] = LoadGraph((IMG_PATH + fileName).c_str());
 
 	return resourceMap[fileName];
 }
 
+//連番画像を登録する
 int* ResourceManager::LoadAminImageResource(string fileName, int allNum, int xNum, int yNum, int xSize, int ySize)
 {
 	if (animMap.find(fileName) == animMap.end()) {
@@ -45,17 +51,18 @@ int* ResourceManager::LoadAminImageResource(string fileName, int allNum, int xNu
 			delete[] handle;
 			return nullptr;
 		}
-		LoadDivGraph(fileName.c_str(), allNum, xNum, yNum, xSize, ySize, handle);
+		LoadDivGraph((IMG_PATH + fileName).c_str(), allNum, xNum, yNum, xSize, ySize, handle);
 		animMap[fileName] = handle;
 	}
 	return animMap[fileName];
 }
 
+//音源を登録する
 int ResourceManager::LoadSoundResource(string fileName) {
 
 	//指定したリソースが存在するならハンドルを返す
 	if (resourceMap.find(fileName) == resourceMap.end())
-		resourceMap[fileName] = LoadSoundMem(fileName.c_str());
+		resourceMap[fileName] = LoadSoundMem((SND_PATH + fileName).c_str());
 
 	return resourceMap[fileName];
 }

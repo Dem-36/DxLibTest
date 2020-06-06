@@ -7,6 +7,11 @@
 
 using namespace std;
 
+//画像幅の半分を返す
+#define HALF_SPRITE_X ((transform.spriteSize.x) / (2.0f))
+//画像の高さの半分を返す
+#define HALF_SPRITE_Y ((transform.spriteSize.y) / (2.0f))
+
 class GameObject {
 public:
 	//コンストラクタ

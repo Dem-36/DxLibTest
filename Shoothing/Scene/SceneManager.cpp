@@ -28,9 +28,11 @@ void SceneManager::Initialize()
 {
 	fadeManager.OnFade()->Subscribe([this](FADE_TYPE type) {
 		switch (type) {
+			//フェードIN終了
 		case FADE_TYPE::FADE_IN:
 			state = SCENE_STATE::RELEASE;
 			break;
+		//フェードOUT終了
 		case FADE_TYPE::FADE_OUT:
 			break;
 		}

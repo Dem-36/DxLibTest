@@ -24,14 +24,17 @@ void GameScene::Initialize()
 		});
 	AddGameObject(player);
 
+	//ƒGƒlƒ~[¶¬ˆÊ’u“o˜^
 	spawner = new EnemySpawner();
 	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, -32.0f));
 	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT + 32.0f));
 	spawner->AddSpawnPoint(Vector2(-32.0f, WINDOW_HEIGHT / 2.0f));
 	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 32, WINDOW_HEIGHT / 2.0f));
 
+	//ƒGƒlƒ~[¶¬
 	spawner->OnSpawn()->Subscribe([this](Vector2 position) {
 		Enemy* enemy = new Enemy(new ChaseAI(player),position);
+		//UŒ‚‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ìˆ—“o˜^
 		enemy->OnHit()->Subscribe([this](Transform transform) {
 			score->AddScore();
 			AddGameObject(new Bomb(&transform));

@@ -4,7 +4,6 @@
 #include"GameObject.h"
 #include"../Subject.h"
 
-#define ToRadian(degree) ((degree) * (3.14159265359f / 180.0f))
 #define SHOT_DELAYFRAME 10
 
 class Player:public GameObject

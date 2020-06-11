@@ -3,24 +3,24 @@
 #define IMG_PATH "Resource\\img\\"
 #define SND_PATH "Resource\\sound\\"
 
-ResourceManager* ResourceManager::instance = NULL;
-
-ResourceManager* ResourceManager::Instance()
-{
-	if (instance == NULL)
-		instance = new ResourceManager();
-
-	return instance;
-}
-
-void ResourceManager::DestroyInstance()
-{
-	if (instance == NULL)
-		return;
-
-	delete instance;
-	instance = NULL;
-}
+//ResourceManager* ResourceManager::instance = NULL;
+//
+//ResourceManager* ResourceManager::Instance()
+//{
+//	if (instance == NULL)
+//		instance = new ResourceManager();
+//
+//	return instance;
+//}
+//
+//void ResourceManager::DestroyInstance()
+//{
+//	if (instance == NULL)
+//		return;
+//
+//	delete instance;
+//	instance = NULL;
+//}
 
 //˜A”Ô‰æ‘œ‚ðŠJ•ú‚·‚é
 void ResourceManager::Release()

@@ -4,26 +4,19 @@
 #include"../DisplayFPS.h"
 #include "IScene.h"
 #include"../FadeManager.h"
+#include"../Singleton.h"
 
 //シーン管理クラス
-class SceneManager
+class SceneManager:public Singleton<SceneManager>
 {
 private:
-	SceneManager(){}
-	SceneManager(const SceneManager&){}
-
 	//次のシーンを確認する
 	void CheckNextScene();
-
 public:
-	static SceneManager* Instance();
-	static void DestroyInstance();
 	void Initialize();
 	void Update();
 	void LoadScene(IScene* scene);
-private:
-	void Release();
-
+	void Release()override;
 private:
 	enum class SCENE_STATE {
 		INITIALIZE,UPDATE,RELEASE
@@ -35,7 +28,6 @@ private:
 	FadeManager fadeManager;
 	DisplayFPS fps;
 	SCENE_STATE state;
-	static SceneManager* instance;
 };
 
 #endif

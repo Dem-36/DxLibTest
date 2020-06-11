@@ -1,24 +1,6 @@
 #include "GameObjectManager.h"
 #include"../Utility/Collision.h"
 
-
-GameObjectManager* GameObjectManager::instance = NULL;
-
-GameObjectManager* GameObjectManager::Instance()
-{
-	if (instance == NULL)
-		instance = new GameObjectManager();
-	return instance;
-}
-
-void GameObjectManager::DestroyInstance()
-{
-	if (instance == NULL)
-		return;
-	delete instance;
-	instance = NULL;
-}
-
 void GameObjectManager::AddGameObject(GameObject* object)
 {
 	//object‚ªNULL‚È‚ç’Ç‰Á‚µ‚È‚¢

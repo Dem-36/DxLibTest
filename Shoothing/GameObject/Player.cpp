@@ -7,6 +7,7 @@
 Player::Player()
 {
 	tag = "Player";
+	timer.SetLimitTime(SHOT_DELAYTIME);
 }
 
 Player::~Player()
@@ -19,9 +20,8 @@ void Player::Initialize()
 	transform.position = Vector2(320, 240);
 	transform.spriteSize = Vector2(64, 64);
 	velocity = Vector2(5, 5);
-	soundHandle = RESOURCE_MANAGER->LoadSoundResource("laser2.mp3");
-	h = RESOURCE_MANAGER->LoadAminImageResource("Player.png", 54, 9, 6, 64, 64);
-	waitFrame = 0;
+	soundHandle = ResourceManager::Instance()->LoadSoundResource("laser2.mp3");
+	h = ResourceManager::Instance()->LoadAminImageResource("Player.png", 54, 9, 6, 64, 64);
 }
 
 void Player::Update()
@@ -37,6 +37,7 @@ void Player::Draw(Renderer* renderer)
 {
 	static int i = 0;
 	renderer->DrawRotaGraph(transform.position, 1.0f, transform.angle, h[i], TRUE, TRUE);
+	renderer->DrawString(Vector2(0, 50), std::to_string(timer.GetNowTime()).c_str());
 }
 
 //ˆÚ“®
@@ -44,13 +45,13 @@ void Player::Move()
 {
 	velocity = Vector2::Zero();
 
-	if (INPUT_MANAGER->GetKey(KEY_INPUT_UP))
+	if (InputManager::Instance()->GetKey(KEY_INPUT_UP))
 		velocity.y = -1.0f;
-	if (INPUT_MANAGER->GetKey(KEY_INPUT_DOWN))
+	if (InputManager::Instance()->GetKey(KEY_INPUT_DOWN))
 		velocity.y = 1.0f;
-	if (INPUT_MANAGER->GetKey(KEY_INPUT_LEFT))
+	if (InputManager::Instance()->GetKey(KEY_INPUT_LEFT))
 		velocity.x = -1.0f;
-	if (INPUT_MANAGER->GetKey(KEY_INPUT_RIGHT))
+	if (InputManager::Instance()->GetKey(KEY_INPUT_RIGHT))
 		velocity.x = 1.0f;
 
 	if (velocity.x != 0 && velocity.y != 0)
@@ -63,18 +64,16 @@ void Player::Move()
 void Player::Shot()
 {
 	//’e‚ðŒ‚‚Â
-	if (INPUT_MANAGER->GetKey(KEY_INPUT_SPACE)) {
-		if (waitFrame == 0) {
+	if (InputManager::Instance()->GetKey(KEY_INPUT_SPACE)) {
+		timer.Update();
+		if (timer.IsTime()) {
 			shotSubject.OnNext(transform);
 			PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
-			waitFrame = 1;
+			timer.Initialize();
 		}
-		waitFrame++;
-		if (waitFrame > SHOT_DELAYFRAME)
-			waitFrame = 0;
 	}
 	else
-		waitFrame = 0;
+		timer.Initialize();
 }
 
 /// <summary>
@@ -85,4 +84,18 @@ void Player::Shot()
 IObservable<Transform>* Player::OnShotButton()
 {
 	return &shotSubject;
+}
+
+void Player::OnHitBox(GameObject* other)
+{
+	//“G‚ÆÚG
+	if (other->tag == "Enemy") {
+		//hitSubject.OnNext(transform);
+		//Destroy();
+	}
+}
+
+IObservable<Transform>* Player::OnHit()
+{
+	return &hitSubject;
 }

@@ -6,24 +6,6 @@
 
 #define SAFE_RELEASE(x) if(x!=NULL){delete x;x = NULL;}
 
-SceneManager* SceneManager::instance = NULL;
-
-
-SceneManager* SceneManager::Instance()
-{
-	if (instance == NULL)
-		instance = new SceneManager();
-	return instance;
-}
-
-void SceneManager::DestroyInstance()
-{
-	if (instance == NULL)
-		return;
-	delete instance;
-	instance = NULL;
-}
-
 void SceneManager::Initialize()
 {
 	fadeManager.OnFade()->Subscribe([this](FADE_TYPE type) {
@@ -56,7 +38,7 @@ void SceneManager::Update()
 	while (ProcessMessage() == 0 &&
 		CheckHitKey(KEY_INPUT_ESCAPE) == 0) {
 		ClearDrawScreen();
-		INPUT_MANAGER->UpdateKey();	
+		InputManager::Instance()->UpdateKey();
 		switch (state)
 		{
 		case SceneManager::SCENE_STATE::INITIALIZE:
@@ -90,6 +72,7 @@ void SceneManager::Update()
 
 void SceneManager::LoadScene(IScene* scene)
 {
+	//ˆê”Ô‰‚ß‚ÌƒV[ƒ““Ç‚Ýž‚Ý
 	if (currentScene == NULL) {
 		currentScene = scene;
 		state = SCENE_STATE::INITIALIZE; 
@@ -106,9 +89,9 @@ void SceneManager::Release()
 	SAFE_RELEASE(nextScene);
 	SAFE_RELEASE(renderer);
 	RANDOM->DestroyInstance();
-	INPUT_MANAGER->DestroyInstance();
-	RESOURCE_MANAGER->Release();
-	RESOURCE_MANAGER->DestroyInstance();
-	GAMEOBJECT_MANAGER->DestroyInstance();
+	InputManager::Instance()->DestroyInstance();
+	ResourceManager::Instance()->Release();
+	ResourceManager::Instance()->DestroyInstance();
+	GameObjectManager::Instance()->DestroyInstance();
 	this->DestroyInstance();
 }

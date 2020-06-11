@@ -5,9 +5,10 @@
 
 class Animation {
 public:
-	Animation(const std::string fileName);
+	Animation(const std::string fileName,int allNum,int xNum,int yNum,int xSize,int ySize);
 private:
 	int* handle;
+	int allAnimNum;
 };
 
 #endif

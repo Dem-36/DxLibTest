@@ -3,24 +3,14 @@
 
 #include"GameObject.h"
 #include<list>
-
-#define GAMEOBJECT_MANAGER GameObjectManager::Instance()
+#include"../Singleton.h"
 
 /// <summary>
 /// GameObject管理クラス(Singleton)
 /// </summary>
-class GameObjectManager
+class GameObjectManager:public Singleton<GameObjectManager>
 {
-private:
-	//外からインスタンスが生成できないようにする
-	GameObjectManager(){}
-	GameObjectManager(const GameObjectManager&){}
 public:
-	//インスタンスの取得
-	static GameObjectManager* Instance();
-	//インスタンスの解放
-	static void DestroyInstance();
-
 	//コンテナにGameObjectを格納する
 	void AddGameObject(GameObject* object);
 
@@ -44,7 +34,6 @@ public:
 
 private:
 	std::list<GameObject*> container;
-	static GameObjectManager* instance;
 };
 
 #endif

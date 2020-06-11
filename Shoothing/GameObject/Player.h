@@ -3,8 +3,9 @@
 #include"DxLib.h"
 #include"GameObject.h"
 #include"../Subject.h"
+#include"../Time.h"
 
-#define SHOT_DELAYFRAME 10
+#define SHOT_DELAYTIME 0.5f
 
 class Player:public GameObject
 {
@@ -15,14 +16,18 @@ public:
 	void Update();
 	void Draw(Renderer* renderer);
 	IObservable <Transform>* OnShotButton();
+	void OnHitBox(GameObject* other);
+	//Õ“Ë‚ÌƒCƒxƒ“ƒg‚ğ“o˜^
+	IObservable<Transform>* OnHit();
 private:
 	void Move();
 	void Shot();
 private:
 	Subject<Transform> shotSubject;
+	Subject<Transform> hitSubject;
 	Vector2 velocity;
 	int soundHandle;
-	int waitFrame;
+	Time timer{ SHOT_DELAYTIME };
 	int* h;
 };
 

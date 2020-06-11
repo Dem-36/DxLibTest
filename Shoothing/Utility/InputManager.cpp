@@ -1,22 +1,6 @@
 #include"InputManager.h"
 #include"DxLib.h"
 
-InputManager* InputManager::instance = NULL;
-
-InputManager* InputManager::Instance() {
-	if (instance == NULL)
-		instance = new InputManager();
-
-	return instance;
-}
-
-void InputManager::DestroyInstance() {
-	if (instance != NULL) {
-		delete instance;
-		instance = NULL;
-	}
-}
-
 void InputManager::UpdateKey() {
 	char tmpKey[256];
 	GetHitKeyStateAll(tmpKey);//‚·‚×‚Ä‚ÌƒL[‚Ì“ü—Íó‘Ô‚ğ•Û‘¶
@@ -72,4 +56,8 @@ bool InputManager::GetKeyUp(int keyCode)
 		return true;
 
 	return false;
+}
+
+void InputManager::Release()
+{
 }

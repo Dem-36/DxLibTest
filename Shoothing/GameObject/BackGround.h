@@ -8,12 +8,14 @@
 class BackGround:public GameObject
 {
 public:
-	BackGround();
+	BackGround(std::string bgmName);
 	~BackGround();
 
 	void Initialize();
 	void Update();
 	void Draw(Renderer* renderer);
+
+	void StopBGM();
 
 private:
 	int handle;

@@ -26,8 +26,8 @@ void Enemy::Initialize()
 {
 	transform.angle = 0;
 	transform.spriteSize = Vector2(64, 64);
-	handle = RESOURCE_MANAGER->LoadImageResource("zombie.png");
-	soundHandle = RESOURCE_MANAGER->LoadSoundResource("damage1.mp3");
+	handle = ResourceManager::Instance()->LoadImageResource("zombie.png");
+	soundHandle = ResourceManager::Instance()->LoadSoundResource("damage1.mp3");
 }
 
 void Enemy::Update()

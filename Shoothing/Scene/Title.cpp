@@ -7,7 +7,7 @@ void Title::Initialize()
 
 void Title::Update()
 {
-	if (INPUT_MANAGER->GetKeyDown(KEY_INPUT_Z)) {
+	if (InputManager::Instance()->GetKeyDown(KEY_INPUT_Z)) {
 		SceneManager::Instance()->LoadScene(new GameScene());
 	}
 }

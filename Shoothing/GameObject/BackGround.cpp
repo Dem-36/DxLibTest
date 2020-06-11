@@ -1,10 +1,11 @@
 #include "BackGround.h"
 #include"../Utility/ResourceManager.h"
 
-BackGround::BackGround()
+BackGround::BackGround(std::string bgmName)
 {
 	transform.position = Vector2();
-	transform.spriteSize = Vector2();
+	transform.spriteSize = Vector2();	
+	soundHandle = ResourceManager::Instance()->LoadSoundResource(bgmName);
 }
 
 BackGround::~BackGround()
@@ -14,8 +15,7 @@ BackGround::~BackGround()
 
 void BackGround::Initialize()
 {
-	handle = RESOURCE_MANAGER->LoadImageResource("bg.png");
-	soundHandle = RESOURCE_MANAGER->LoadSoundResource ("nv_01.mp3");
+	handle = ResourceManager::Instance()->LoadImageResource("bg.png");
 	PlaySoundMem(soundHandle, DX_PLAYTYPE_LOOP);
 }
 
@@ -26,4 +26,9 @@ void BackGround::Update()
 void BackGround::Draw(Renderer* renderer)
 {
 	renderer->DrawGraph_TL(transform.position, handle);
+}
+
+void BackGround::StopBGM()
+{
+	StopSoundMem(soundHandle);
 }

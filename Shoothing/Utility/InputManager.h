@@ -1,25 +1,18 @@
 #ifndef _INPUTMANAGER_H_
 #define _INPUTMANAGER_H_
 
-#define INPUT_MANAGER InputManager::Instance()
+#include"../Singleton.h"
 
-class InputManager {
-private:
-	//コンストラクタをprivateにし、
-	//外部からインスタンスが生成されないようにする
-	InputManager(){}
-	InputManager(const InputManager&){}
-public:
-	static InputManager* Instance();
-	static void DestroyInstance();
+class InputManager :public Singleton<InputManager>
+{
 public:
 	void UpdateKey();
 	bool GetKey(int);
 	bool GetKeyDown(int);
 	bool GetKeyUp(int);
+	void Release()override;
 private:
 	char key[256];//キー情報保存
-	static InputManager* instance;
 };
 
 #endif

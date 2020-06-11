@@ -12,15 +12,19 @@
 
 void GameScene::Initialize()
 {
-	AddGameObject(new BackGround());
-
 	player = new Player();
+	backGround = new BackGround("nv_01.mp3");
+	AddGameObject(backGround);
 
 	//Subscribe“à‚ÅŠÖ”‚ð“o˜^‚·‚é
 	//‚±‚±‚ÅŒ¾‚¤ŠÖ”‚Í[this](Transform`‚Ì•”•ª
 	//Subscribe‚ÅŠÖ”“o˜^ -> Player“à‚ÅOnNext‚ðŒÄ‚Ô = “o˜^‚µ‚½ŠÖ”‚ðŽÀs‚Æ‚¢‚¤—¬‚ê
 	player->OnShotButton()->Subscribe([this](Transform transform) {
 		AddGameObject(new Bullet(&transform));
+		});
+	player->OnHit()->Subscribe([this](Transform transform) {
+		AddGameObject(new Bomb(&transform));
+		backGround->StopBGM();
 		});
 	AddGameObject(player);
 
@@ -53,19 +57,19 @@ void GameScene::Update()
 	//if (INPUT_MANAGER->GetKeyDown(KEY_INPUT_Z)) {
 	//	SceneManager::Instance()->LoadScene(new Title());
 	//}
-	GAMEOBJECT_MANAGER->Update();
-	GAMEOBJECT_MANAGER->HitCheck();
-	GAMEOBJECT_MANAGER->DestroyCheck();
+	GameObjectManager::Instance()->Update();
+	GameObjectManager::Instance()->HitCheck();
+	GameObjectManager::Instance()->DestroyCheck();
 }
 
 void GameScene::Draw(Renderer* renderer)
 {
-	GAMEOBJECT_MANAGER->Draw(renderer);
+	GameObjectManager::Instance()->Draw(renderer);
 }
 
 void GameScene::Release()
 {
-	GAMEOBJECT_MANAGER->Release();
+	GameObjectManager::Instance()->Release();
 }
 
 /// <summary>
@@ -74,5 +78,5 @@ void GameScene::Release()
 /// <param name="object"></param>
 void GameScene::AddGameObject(GameObject* object)
 {
-	GAMEOBJECT_MANAGER->AddGameObject(object);
+	GameObjectManager::Instance()->AddGameObject(object);
 }

@@ -5,7 +5,7 @@
 
 class Collision {
 public:
-	static bool OnHitRect(GameObject* obj1, GameObject* obj2);
+	static bool OnHitRect(const Transform* obj1, const Transform* obj2);
 };
 
 #endif

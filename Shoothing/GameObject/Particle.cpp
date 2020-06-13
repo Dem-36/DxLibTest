@@ -65,8 +65,8 @@ void Particle::CreateSpark()
 	for (i = 0; i < SPARK_NUM; i++) {
 		spark[i].position = transform.position;
 
-		spark[i].velocity = Vector2(RANDOM->Range(-5.0f, 5.0f), RANDOM->Range(-10.0f, 0.0f));
-		spark[i].gravity = RANDOM->Range(1.0f, 2.0f);
+		spark[i].velocity = Vector2(Random::Range(-5.0f, 5.0f), Random::Range(-10.0f, 0.0f));
+		spark[i].gravity = Random::Range(1.0f, 2.0f);
 		spark[i].bright = 255;
 		spark[i].valid = true;
 	}

@@ -230,9 +230,6 @@
     <ClInclude Include="Time.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>ヘッダー ファイル\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>

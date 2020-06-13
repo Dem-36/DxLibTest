@@ -30,10 +30,13 @@ void GameScene::Initialize()
 
 	//エネミー生成位置登録
 	spawner = new EnemySpawner();
-	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, -32.0f));
-	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT + 32.0f));
-	spawner->AddSpawnPoint(Vector2(-32.0f, WINDOW_HEIGHT / 2.0f));
-	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 32, WINDOW_HEIGHT / 2.0f));
+	//spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, -32.0f));
+	//spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT + 32.0f));
+	//spawner->AddSpawnPoint(Vector2(-32.0f, WINDOW_HEIGHT / 2.0f));
+	//spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 32, WINDOW_HEIGHT / 2.0f));
+	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 36.0f, 64.0f));
+	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 36.0f, WINDOW_HEIGHT/2.0f));
+	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 36.0f, WINDOW_HEIGHT-64.0f));
 
 	//エネミー生成
 	spawner->OnSpawn()->Subscribe([this](Vector2 position) {
@@ -54,9 +57,9 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-	//if (INPUT_MANAGER->GetKeyDown(KEY_INPUT_Z)) {
-	//	SceneManager::Instance()->LoadScene(new Title());
-	//}
+	if (player->IsDestroy()) {
+		SceneManager::Instance()->LoadScene(new Title());
+	}
 	GameObjectManager::Instance()->Update();
 	GameObjectManager::Instance()->HitCheck();
 	GameObjectManager::Instance()->DestroyCheck();

@@ -5,7 +5,7 @@
 #include"../Subject.h"
 #include"../Time.h"
 
-#define SHOT_DELAYTIME 0.5f
+#define SHOT_DELAYTIME 0.1f
 
 class Player:public GameObject
 {
@@ -28,7 +28,7 @@ private:
 	Vector2 velocity;
 	int soundHandle;
 	Time timer{ SHOT_DELAYTIME };
-	int* h;
+	int handle;
 };
 
 #endif

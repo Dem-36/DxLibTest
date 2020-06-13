@@ -8,7 +8,7 @@
 class BackGround:public GameObject
 {
 public:
-	BackGround(std::string bgmName);
+	BackGround(std::string bgmName,GameObject* player);
 	~BackGround();
 
 	void Initialize();
@@ -20,6 +20,7 @@ public:
 private:
 	int handle;
 	int soundHandle;
+	GameObject* player;
 };
 #endif
 

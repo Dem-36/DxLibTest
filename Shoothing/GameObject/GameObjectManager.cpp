@@ -77,7 +77,7 @@ void GameObjectManager::HitCheck()
 				tgt == itr)
 				continue;
 
-			if (Collision::OnHitRect((*itr), (*tgt))) {
+			if (Collision::OnHitRect(&(*itr)->transform, &(*tgt)->transform)) {
 				(*itr)->OnHitBox((*tgt));
 				(*tgt)->OnHitBox((*itr));
 			}

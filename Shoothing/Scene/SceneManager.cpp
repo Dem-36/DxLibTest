@@ -14,11 +14,11 @@ void SceneManager::Initialize()
 		case FADE_TYPE::FADE_IN:
 			state = SCENE_STATE::RELEASE;
 			break;
-		//フェードOUT終了
+			//フェードOUT終了
 		case FADE_TYPE::FADE_OUT:
 			break;
 		}
-	});
+		});
 }
 
 void SceneManager::CheckNextScene()
@@ -75,7 +75,7 @@ void SceneManager::LoadScene(IScene* scene)
 	//一番初めのシーン読み込み
 	if (currentScene == NULL) {
 		currentScene = scene;
-		state = SCENE_STATE::INITIALIZE; 
+		state = SCENE_STATE::INITIALIZE;
 	}
 	else {
 		nextScene = scene;
@@ -88,7 +88,6 @@ void SceneManager::Release()
 	SAFE_RELEASE(currentScene);
 	SAFE_RELEASE(nextScene);
 	SAFE_RELEASE(renderer);
-	RANDOM->DestroyInstance();
 	InputManager::Instance()->DestroyInstance();
 	ResourceManager::Instance()->Release();
 	ResourceManager::Instance()->DestroyInstance();

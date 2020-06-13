@@ -18,10 +18,10 @@ Player::~Player()
 void Player::Initialize()
 {
 	transform.position = Vector2(320, 240);
-	transform.spriteSize = Vector2(64, 64);
-	velocity = Vector2(5, 5);
+	transform.spriteSize = Vector2(38, 32);
+	velocity = Vector2::Zero();
 	soundHandle = ResourceManager::Instance()->LoadSoundResource("laser2.mp3");
-	h = ResourceManager::Instance()->LoadAminImageResource("Player.png", 54, 9, 6, 64, 64);
+	handle = ResourceManager::Instance()->LoadImageResource("2.png");
 }
 
 void Player::Update()
@@ -35,29 +35,27 @@ void Player::Update()
 //•`‰æ
 void Player::Draw(Renderer* renderer)
 {
-	static int i = 0;
-	renderer->DrawRotaGraph(transform.position, 1.0f, transform.angle, h[i], TRUE, TRUE);
+	renderer->DrawRotaGraph(transform.position, 1.0f, transform.angle, handle, TRUE, TRUE);
 	renderer->DrawString(Vector2(0, 50), std::to_string(timer.GetNowTime()).c_str());
 }
 
 //ˆÚ“®
 void Player::Move()
 {
-	velocity = Vector2::Zero();
-
 	if (InputManager::Instance()->GetKey(KEY_INPUT_UP))
-		velocity.y = -1.0f;
+		transform.position += velocity;
 	if (InputManager::Instance()->GetKey(KEY_INPUT_DOWN))
-		velocity.y = 1.0f;
+		transform.position -= velocity;
 	if (InputManager::Instance()->GetKey(KEY_INPUT_LEFT))
-		velocity.x = -1.0f;
+		transform.angle -= ToRadian(5);
 	if (InputManager::Instance()->GetKey(KEY_INPUT_RIGHT))
-		velocity.x = 1.0f;
+		transform.angle += ToRadian(5);
 
-	if (velocity.x != 0 && velocity.y != 0)
-		velocity.Normalize();
+	//if (velocity.x != 0 && velocity.y != 0)
+	//	velocity.Normalize();
 
-	transform.position += velocity * 5.0f;
+	velocity = Vector2(0, -5);
+	velocity = Algorithm::RotationMatrix_Z(velocity, transform.angle);
 }
 
 //UŒ‚ˆ—
@@ -90,8 +88,8 @@ void Player::OnHitBox(GameObject* other)
 {
 	//“G‚ÆÚG
 	if (other->tag == "Enemy") {
-		//hitSubject.OnNext(transform);
-		//Destroy();
+		hitSubject.OnNext(transform);
+		Destroy();
 	}
 }
 

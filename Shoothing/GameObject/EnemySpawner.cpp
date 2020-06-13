@@ -20,7 +20,7 @@ void EnemySpawner::Update()
 	if (waitFrame < SPAWN_INTERVAL)
 		return;
 
-	int index = RANDOM->Range(0, spawnPoints.size() - 1);
+	int index = Random::Range(0, spawnPoints.size() - 1);
 	spawnSubject.OnNext(spawnPoints[index]);
 
 	waitFrame = 0;

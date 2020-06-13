@@ -24,7 +24,7 @@ void Bullet::Initialize()
 
 void Bullet::Update()
 {
-	Vector2 moveVelocity(10, 0);
+	Vector2 moveVelocity(0, -10);
 	velocity = Algorithm::RotationMatrix_Z(moveVelocity, transform.angle);
 	transform.position += velocity;
 

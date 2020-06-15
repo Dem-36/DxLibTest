@@ -3,6 +3,7 @@
 #include"../Utility/ResourceManager.h"
 #include"../Utility/Algorithm.h"
 #include"../Screen.h"
+#include"../Math.h"
 
 Player::Player()
 {
@@ -28,8 +29,8 @@ void Player::Update()
 {
 	Move();
 	Shot();
-	transform.position.x = Algorithm::Clamp(transform.position.x, HALF_SPRITE_X, WINDOW_WIDTH - HALF_SPRITE_X);
-	transform.position.y = Algorithm::Clamp(transform.position.y, HALF_SPRITE_Y, WINDOW_HEIGHT - HALF_SPRITE_Y);
+	transform.position.x = Math::Clamp(transform.position.x, HALF_SPRITE_X, WINDOW_WIDTH - HALF_SPRITE_X);
+	transform.position.y = Math::Clamp(transform.position.y, HALF_SPRITE_Y, WINDOW_HEIGHT - HALF_SPRITE_Y);
 }
 
 //•`‰æ
@@ -50,9 +51,6 @@ void Player::Move()
 		transform.angle -= ToRadian(5);
 	if (InputManager::Instance()->GetKey(KEY_INPUT_RIGHT))
 		transform.angle += ToRadian(5);
-
-	//if (velocity.x != 0 && velocity.y != 0)
-	//	velocity.Normalize();
 
 	velocity = Vector2(0, -5);
 	velocity = Algorithm::RotationMatrix_Z(velocity, transform.angle);

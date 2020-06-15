@@ -13,7 +13,7 @@
 void GameScene::Initialize()
 {
 	player = new Player();
-	backGround = new BackGround("nv_01.mp3");
+	backGround = new BackGround("nv_01.mp3",player);
 	AddGameObject(backGround);
 
 	//Subscribe“à‚ÅŠÖ”‚ğ“o˜^‚·‚é

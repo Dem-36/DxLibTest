@@ -48,9 +48,9 @@ void Player::Move()
 	if (InputManager::Instance()->GetKey(KEY_INPUT_DOWN))
 		transform.position -= velocity;
 	if (InputManager::Instance()->GetKey(KEY_INPUT_LEFT))
-		transform.angle -= ToRadian(5);
+		transform.angle -= 5.0f * Math::Deg2Rad();
 	if (InputManager::Instance()->GetKey(KEY_INPUT_RIGHT))
-		transform.angle += ToRadian(5);
+		transform.angle += 5.0f * Math::Deg2Rad();
 
 	velocity = Vector2(0, -5);
 	velocity = Algorithm::RotationMatrix_Z(velocity, transform.angle);

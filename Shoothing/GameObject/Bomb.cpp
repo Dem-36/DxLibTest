@@ -1,12 +1,11 @@
 #include "Bomb.h"
 #include"../Utility/ResourceManager.h"
+#include"../DxLibExpansion.h"
 
 Bomb::Bomb(const Transform* transform)
 {
 	this->transform.position = transform->position;
 	tag = "Bomb";
-	this->transform.spriteSize = Vector2(96, 96);
-	index = 0;
 }
 
 Bomb::~Bomb()
@@ -16,10 +15,9 @@ Bomb::~Bomb()
 
 void Bomb::Initialize()
 {
-	handle = ResourceManager::Instance()->LoadAminImageResource(
-		"BOMB.png", 8, 8, 1, 96, 96);
+	anim.SetAnim("Bomb.png", 8, 8, 1, 82, 72, 0.05f);
 	snd = ResourceManager::Instance()->LoadSoundResource("bomb.mp3");
-
+	this->transform.spriteSize = DxLibExpansion::GetSpriteSize(anim.GetAnimHandle());
 	PlaySoundMem(snd, DX_PLAYTYPE_BACK);
 }
 
@@ -30,9 +28,9 @@ void Bomb::Update()
 void Bomb::Draw(Renderer* renderer)
 {
 	renderer->DrawGraph_C(transform.position,
-		transform.spriteSize, handle[index]);
+		transform.spriteSize, anim.GetAnimHandle());
 
-	index++;
-	if (index >= 8)
+	anim.Update();
+	if (anim.IsEnd())
 		Destroy();
 }

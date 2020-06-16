@@ -6,7 +6,6 @@
 
 class Algorithm {
 public:
-
 	//Z²•ûŒü‚Ì‰ñ“]s—ñ
 	static Vector2 RotationMatrix_Z(Vector2 value, float angle) {
 		float c = static_cast<float>(cos(angle));

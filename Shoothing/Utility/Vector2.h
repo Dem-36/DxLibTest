@@ -14,6 +14,10 @@ public:
 
 	static float Distance(const Vector2& v1, const Vector2& v2);
 	static Vector2 Zero();
+	static Vector2 Up();
+	static Vector2 Down();
+	static Vector2 Left();
+	static Vector2 Right();
 
 	//’P€‰‰Zq
 	Vector2 operator +()const;

@@ -4,6 +4,7 @@
 #include"../Utility/Algorithm.h"
 #include"../Screen.h"
 #include"../Math.h"
+#include"../DxLibExpansion.h"
 
 Player::Player()
 {
@@ -18,11 +19,11 @@ Player::~Player()
 
 void Player::Initialize()
 {
-	transform.position = Vector2(320, 240);
-	transform.spriteSize = Vector2(38, 32);
-	velocity = Vector2::Zero();
-	soundHandle = ResourceManager::Instance()->LoadSoundResource("laser2.mp3");
 	handle = ResourceManager::Instance()->LoadImageResource("2.png");
+	soundHandle = ResourceManager::Instance()->LoadSoundResource("laser2.mp3");
+	transform.position = Vector2(320, 240);
+	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
+	velocity = Vector2::Zero();
 }
 
 void Player::Update()
@@ -63,13 +64,34 @@ void Player::Shot()
 	if (InputManager::Instance()->GetKey(KEY_INPUT_SPACE)) {
 		timer.Update();
 		if (timer.IsTime()) {
-			shotSubject.OnNext(transform);
-			PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
+			NWayShot(4,45.0f);
 			timer.Initialize();
 		}
 	}
 	else
 		timer.Initialize();
+}
+
+void Player::NWayShot(int shotCount,float shotRange)
+{
+	Vector2 pos = transform.position;
+	float baseAngle = transform.angle;
+
+	if (shotCount > 1) {
+		for (int i = 0; i < shotCount; i++) {
+			//NWay ’e‚Ì”­ŽËŠp“xŒvŽZ
+			float angle = baseAngle + (shotRange * Math::Deg2Rad()) * ((float)i / (shotCount - 1) - 0.5f);
+			Transform t;
+			t.position = pos;
+			t.angle = angle;
+			shotSubject.OnNext(t);
+			PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
+		}
+	}
+	else if (shotCount > 0) {
+		shotSubject.OnNext(transform);
+		PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
+	}
 }
 
 /// <summary>
@@ -86,8 +108,8 @@ void Player::OnHitBox(GameObject* other)
 {
 	//“G‚ÆÚG
 	if (other->tag == "Enemy") {
-		hitSubject.OnNext(transform);
-		Destroy();
+		//hitSubject.OnNext(transform);
+		//Destroy();
 	}
 }
 

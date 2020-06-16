@@ -22,6 +22,8 @@ public:
 private:
 	void Move();
 	void Shot();
+	//NWay shotCount = Ëo‚·‚é’e‚Ì” shotRange = ”ÍˆÍ
+	void NWayShot(int shotCount,float shotRange);
 private:
 	Subject<Transform> shotSubject;
 	Subject<Transform> hitSubject;

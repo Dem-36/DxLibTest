@@ -2,6 +2,7 @@
 #define _BOMB_H_
 
 #include"GameObject.h"
+#include"../Animation.h"
 
 class Bomb:public GameObject
 {
@@ -14,9 +15,8 @@ public:
 	void Draw(Renderer* renderer);
 
 private:
-	int* handle;
 	int snd;
-	int index;
+	Animation anim;
 
 };
 #endif

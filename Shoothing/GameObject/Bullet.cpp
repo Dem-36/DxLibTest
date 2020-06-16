@@ -3,6 +3,7 @@
 #include"../Utility/ResourceManager.h"
 #include"../Screen.h"
 #include"../Utility/Algorithm.h"
+#include"../DxLibExpansion.h"
 
 Bullet::Bullet(Transform* transform)
 {
@@ -18,8 +19,9 @@ Bullet::~Bullet()
 
 void Bullet::Initialize()
 {
-	transform.spriteSize = Vector2(16, 16);
-	handle = ResourceManager::Instance()->LoadImageResource("bullet.png");
+	handle = ResourceManager::Instance()->LoadImageResource("Bullet.png");
+	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
+	int a;
 }
 
 void Bullet::Update()

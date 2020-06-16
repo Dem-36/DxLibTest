@@ -20,8 +20,8 @@ void EnemySpawner::Update()
 	if (waitFrame < SPAWN_INTERVAL)
 		return;
 
-	int index = Random::Range(0, spawnPoints.size() - 1);
-	spawnSubject.OnNext(spawnPoints[index]);
+	SPAWN_TYPE type = static_cast<SPAWN_TYPE>(Random::Range(0, 3));
+	spawnSubject.OnNext(type);
 
 	waitFrame = 0;
 }
@@ -30,12 +30,7 @@ void EnemySpawner::Draw(Renderer* renderer)
 {
 }
 
-void EnemySpawner::AddSpawnPoint(Vector2 spawnPoint)
-{
-	spawnPoints.push_back(spawnPoint);
-}
-
-IObservable<Vector2>* EnemySpawner::OnSpawn()
+IObservable<SPAWN_TYPE>* EnemySpawner::OnSpawn()
 {
 	return &spawnSubject;
 }

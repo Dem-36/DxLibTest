@@ -17,7 +17,6 @@ int ResourceManager::LoadImageResource(string fileName)
 	//指定したリソースが存在するならハンドルを返す
 	if (resourceMap.find(fileName) == resourceMap.end())
 		resourceMap[fileName] = LoadGraph((IMG_PATH + fileName).c_str());
-
 	return resourceMap[fileName];
 }
 

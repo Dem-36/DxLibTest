@@ -42,6 +42,8 @@ public:
 	static int FloorToInt(float f);
 	//線形補完
 	static float Lerp(float a, float b, float t);
+	//[a,b]の範囲内で補完する値valueを生成する
+	static float InverseLerp(float a, float b, float value);
 	//a,bを比べ、大きい方を返す
 	static float Max(float a, float b);
 	//a,bを比べ、小さい方を返す

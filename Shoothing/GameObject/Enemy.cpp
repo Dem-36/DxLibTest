@@ -2,6 +2,7 @@
 #include"../Utility/ResourceManager.h"
 #include"../Utility/Random.h"
 #include"../Utility/Algorithm.h"
+#include"../DxLibExpansion.h"
 
 Enemy::Enemy()
 {
@@ -9,13 +10,19 @@ Enemy::Enemy()
 	tag = "Enemy";
 }
 
-Enemy::Enemy(AI* ai,Vector2 position)
+Enemy::Enemy(AI* ai, Vector2 position)
 	:ai(ai)
 {
 	transform.position = position;
 	tag = "Enemy";
 }
 
+Enemy::Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type)
+	:ai(ai), type(type)
+{
+	handle = ResourceManager::Instance()->LoadImageResource(resourceName);
+	tag = "Enemy";
+}
 
 Enemy::~Enemy()
 {
@@ -25,9 +32,25 @@ Enemy::~Enemy()
 void Enemy::Initialize()
 {
 	transform.angle = 0;
-	transform.spriteSize = Vector2(64, 64);
-	handle = ResourceManager::Instance()->LoadImageResource("zombie.png");
+	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
 	soundHandle = ResourceManager::Instance()->LoadSoundResource("damage1.mp3");
+
+	float c = 40.0f;
+	float r = 10.0f;
+	switch (type) {
+	case SPAWN_TYPE::UP:
+		transform.position = Vector2(Random::Range(r, WINDOW_WIDTH - r), -c);
+		break;
+	case SPAWN_TYPE::DOWN:
+		transform.position = Vector2(Random::Range(r, WINDOW_WIDTH - r), WINDOW_HEIGHT + c);
+		break;
+	case SPAWN_TYPE::LEFT:
+		transform.position = Vector2(-c, Random::Range(r, WINDOW_HEIGHT - r));
+		break;
+	case SPAWN_TYPE::RIGHT:
+		transform.position = Vector2(WINDOW_WIDTH + c, Random::Range(r, WINDOW_HEIGHT - r));
+		break;
+	}
 }
 
 void Enemy::Update()

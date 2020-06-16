@@ -97,6 +97,17 @@ float Math::Lerp(float a, float b, float t)
 	return a + t * (b - a);
 }
 
+float Math::InverseLerp(float a, float b, float value)
+{
+	float ans = 0.0f;
+	if (a != b) {
+		ans = (value - a) / (b - a);
+	}
+	ans = (ans > 1.0f) ? 1.0f : ans;
+	ans = (ans < 0.0f) ? 0.0f : ans;
+	return ans;
+}
+
 float Math::Max(float a, float b)
 {
 	if (b < a)

@@ -4,13 +4,17 @@
 #include"DxLib.h"
 #include"GameObject.h"
 #include"../Subject.h"
-#include"../ChaseAI.h"
+#include"../AI.h"
+#include"../SpawnType.h"
 
-class Enemy:public GameObject
+enum class SPAWN_TYPE;
+
+class Enemy :public GameObject
 {
 public:
 	Enemy();
-	Enemy(AI* ai,Vector2 position);
+	Enemy(AI* ai, Vector2 position);
+	Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type);
 	~Enemy();
 
 	void Initialize();
@@ -23,7 +27,7 @@ public:
 private:
 	int handle;
 	int soundHandle;
-
+	SPAWN_TYPE type;
 	Subject<Transform> hitSubject;
 	AI* ai;
 };

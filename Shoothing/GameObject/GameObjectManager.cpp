@@ -10,16 +10,16 @@ void GameObjectManager::AddGameObject(GameObject* object)
 	container.push_back(object);
 }
 
-void GameObjectManager::Initialize()
-{
-	std::list<GameObject*>::iterator itr;
-	//イテレータでforを回す場合、インクリメントは前述形式のほうがわずかに早い
-	for (itr = container.begin(); itr != container.end(); ++itr) {
-		if ((*itr) == NULL)
-			continue;
-		(*itr)->Initialize();
-	}
-}
+//void GameObjectManager::Initialize()
+//{
+//	std::list<GameObject*>::iterator itr;
+//	//イテレータでforを回す場合、インクリメントは前述形式のほうがわずかに早い
+//	for (itr = container.begin(); itr != container.end(); ++itr) {
+//		if ((*itr) == NULL)
+//			continue;
+//		(*itr)->Initialize();
+//	}
+//}
 
 void GameObjectManager::Update()
 {

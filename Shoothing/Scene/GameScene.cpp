@@ -8,12 +8,13 @@
 #include"SceneManager.h"
 #include"Title.h"
 #include"../ChaseAI.h"
+#include"../StraightAI.h"
 #include"../GameObject/Particle.h"
 
 void GameScene::Initialize()
 {
 	player = new Player();
-	backGround = new BackGround("nv_01.mp3",player);
+	backGround = new BackGround("nv_01.mp3",&player->transform);
 	AddGameObject(backGround);
 
 	//Subscribe“à‚ÅŠÖ”‚ð“o˜^‚·‚é
@@ -30,23 +31,24 @@ void GameScene::Initialize()
 
 	//ƒGƒlƒ~[¶¬ˆÊ’u“o˜^
 	spawner = new EnemySpawner();
-	//spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, -32.0f));
-	//spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT + 32.0f));
-	//spawner->AddSpawnPoint(Vector2(-32.0f, WINDOW_HEIGHT / 2.0f));
-	//spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 32, WINDOW_HEIGHT / 2.0f));
-	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 36.0f, 64.0f));
-	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 36.0f, WINDOW_HEIGHT/2.0f));
-	spawner->AddSpawnPoint(Vector2(WINDOW_WIDTH + 36.0f, WINDOW_HEIGHT-64.0f));
 
 	//ƒGƒlƒ~[¶¬
-	spawner->OnSpawn()->Subscribe([this](Vector2 position) {
-		Enemy* enemy = new Enemy(new ChaseAI(player),position);
+	spawner->OnSpawn()->Subscribe([this](SPAWN_TYPE type) {
+		Enemy* enemy = nullptr;
+		switch (Random::Range(0, 1)) {
+		case 0:
+			enemy = new Enemy(new ChaseAI(player),"Enemy02.png", type);
+			break;
+		case 1:
+			enemy = new Enemy(new StraightAI(type),"Enemy01.png", type);
+			break;
+		}
+		//Enemy* enemy = new Enemy(new StraightAI(type),type);
 		//UŒ‚‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ìˆ—“o˜^
 		enemy->OnHit()->Subscribe([this](Transform transform) {
 			score->AddScore();
 			AddGameObject(new Bomb(&transform));
 			});
-
 		AddGameObject(enemy);
 		});
 	score = new Score();

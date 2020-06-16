@@ -5,11 +5,12 @@
 #include"../Subject.h"
 #include<vector>
 #include"../Utility/Random.h"
+#include"../SpawnType.h"
 
 using namespace std;
-#define SPAWN_INTERVAL 60
+#define SPAWN_INTERVAL 5
 
-class EnemySpawner:public GameObject
+class EnemySpawner :public GameObject
 {
 public:
 	EnemySpawner();
@@ -19,12 +20,10 @@ public:
 	void Update();
 	void Draw(Renderer* renderer);
 
-	void AddSpawnPoint(Vector2 spawnPoint);
-	IObservable<Vector2>* OnSpawn();
+	IObservable<SPAWN_TYPE>* OnSpawn();
 
 private:
-	Subject<Vector2> spawnSubject;
-	vector<Vector2> spawnPoints;
+	Subject<SPAWN_TYPE> spawnSubject;
 	int waitFrame;
 };
 

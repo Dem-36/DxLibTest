@@ -15,7 +15,7 @@ public:
 	void AddGameObject(GameObject* object);
 
 	//コンテナのInitializeを呼び出す
-	void Initialize();
+	//void Initialize();
 
 	//コンテナのUpdateを呼び出す
 	void Update();

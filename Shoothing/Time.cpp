@@ -45,6 +45,11 @@ float Time::GetNowTime() noexcept
 	return currentTime;
 }
 
+float Time::GetLimitTime() noexcept
+{
+	return limitTime;
+}
+
 //deltaTime
 float Time::DeltaTime() noexcept
 {

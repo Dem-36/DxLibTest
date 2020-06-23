@@ -14,6 +14,7 @@ public:
 	void Update()noexcept;
 	bool IsTime()noexcept;
 	float GetNowTime()noexcept;
+	float GetLimitTime()noexcept;
 	float DeltaTime()noexcept;
 	float Peek()const noexcept;
 private:

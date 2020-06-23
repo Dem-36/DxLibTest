@@ -24,6 +24,11 @@ void Player::Initialize()
 	transform.position = Vector2(320, 240);
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
 	velocity = Vector2::Zero();
+	expManager.Initialize(1, 16, 18);
+
+	expManager.OnLevelUp()->Subscribe([this](char c) {
+		NWayShot(30, 360.0f);
+	});
 }
 
 void Player::Update()
@@ -64,7 +69,7 @@ void Player::Shot()
 	if (InputManager::Instance()->GetKey(KEY_INPUT_SPACE)) {
 		timer.Update();
 		if (timer.IsTime()) {
-			NWayShot(4,45.0f);
+			NWayShot(3,30.0f);
 			timer.Initialize();
 		}
 	}
@@ -116,4 +121,9 @@ void Player::OnHitBox(GameObject* other)
 IObservable<Transform>* Player::OnHit()
 {
 	return &hitSubject;
+}
+
+void Player::AddExp(int exp)
+{
+	expManager.AddExp(exp);
 }

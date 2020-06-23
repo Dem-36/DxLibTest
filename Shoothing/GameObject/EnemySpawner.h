@@ -6,9 +6,9 @@
 #include<vector>
 #include"../Utility/Random.h"
 #include"../SpawnType.h"
+#include"../Time.h"
 
 using namespace std;
-#define SPAWN_INTERVAL 5
 
 class EnemySpawner :public GameObject
 {
@@ -24,7 +24,7 @@ public:
 
 private:
 	Subject<SPAWN_TYPE> spawnSubject;
-	int waitFrame;
+	Time time{ 0.25f };
 };
 
 #endif

@@ -4,8 +4,9 @@
 #include"GameObject.h"
 #include"../Subject.h"
 #include"../Time.h"
+#include"../ExpManager.h"
 
-#define SHOT_DELAYTIME 0.1f
+#define SHOT_DELAYTIME 0.25f
 
 class Player:public GameObject
 {
@@ -19,6 +20,7 @@ public:
 	void OnHitBox(GameObject* other);
 	//Õ“Ë‚ÌƒCƒxƒ“ƒg‚ğ“o˜^
 	IObservable<Transform>* OnHit();
+	void AddExp(int exp);
 private:
 	void Move();
 	void Shot();
@@ -31,6 +33,7 @@ private:
 	int soundHandle;
 	Time timer{ SHOT_DELAYTIME };
 	int handle;
+	ExpManager expManager;
 };
 
 #endif

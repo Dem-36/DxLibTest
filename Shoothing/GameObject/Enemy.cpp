@@ -17,8 +17,8 @@ Enemy::Enemy(AI* ai, Vector2 position)
 	tag = "Enemy";
 }
 
-Enemy::Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type)
-	:ai(ai), type(type)
+Enemy::Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type,int exp)
+	:ai(ai), type(type),exp(exp)
 {
 	handle = ResourceManager::Instance()->LoadImageResource(resourceName);
 	tag = "Enemy";
@@ -55,7 +55,14 @@ void Enemy::Initialize()
 
 void Enemy::Update()
 {
+	if (IsDestroy())
+		return;
 	ai->Think(this);
+	if (transform.position.x < -100.0f ||
+		transform.position.x >= WINDOW_WIDTH + 100.0f ||
+		transform.position.y < -100.0f ||
+		transform.position.y >= WINDOW_HEIGHT + 100.0f)
+		Destroy();
 }
 
 void Enemy::Draw(Renderer* renderer)
@@ -66,13 +73,22 @@ void Enemy::Draw(Renderer* renderer)
 void Enemy::OnHitBox(GameObject* other)
 {
 	if (other->tag == "Bullet") {
-		hitSubject.OnNext(transform);
+		EnemyHitInfo info;
+		info.t.position = transform.position;
+		info.t.angle = transform.angle;
+		info.exp = exp;
+		hitSubject.OnNext(info);
 		PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
 		Destroy();
 	}
 }
 
-IObservable<Transform>* Enemy::OnHit()
+int Enemy::GetExp() const noexcept
+{
+	return exp;
+}
+
+IObservable<EnemyHitInfo>* Enemy::OnHit()
 {
 	return &hitSubject;
 }

@@ -2,7 +2,6 @@
 
 EnemySpawner::EnemySpawner()
 {
-	waitFrame = 0;
 }
 
 EnemySpawner::~EnemySpawner()
@@ -11,19 +10,18 @@ EnemySpawner::~EnemySpawner()
 
 void EnemySpawner::Initialize()
 {
-	waitFrame = 0;
 }
 
 void EnemySpawner::Update()
 {
-	waitFrame++;
-	if (waitFrame < SPAWN_INTERVAL)
+	time.Update();
+	if (!time.IsTime())
 		return;
 
 	SPAWN_TYPE type = static_cast<SPAWN_TYPE>(Random::Range(0, 3));
 	spawnSubject.OnNext(type);
 
-	waitFrame = 0;
+	time.Initialize();
 }
 
 void EnemySpawner::Draw(Renderer* renderer)

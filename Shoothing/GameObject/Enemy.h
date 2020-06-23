@@ -6,6 +6,7 @@
 #include"../Subject.h"
 #include"../AI.h"
 #include"../SpawnType.h"
+#include"../AudioAPI.h"
 
 enum class SPAWN_TYPE;
 struct EnemyHitInfo {
@@ -32,10 +33,11 @@ public:
 private:
 	int handle;
 	int soundHandle;
+	int exp;
 	SPAWN_TYPE type;
 	Subject<EnemyHitInfo> hitSubject;
 	AI* ai;
-	int exp;
+	AudioAPI api;
 };
 #endif
 

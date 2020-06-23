@@ -34,7 +34,6 @@ void ScoreGem::Update()
 	if (dist < 100.0f) {
 		Vector2 direction = player->transform.position - transform.position;
 		direction.Normalize();
-
 		transform.position += direction * 8.0f;
 		return;
 	}

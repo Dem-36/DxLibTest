@@ -14,6 +14,7 @@ public:
 	void AddScore();
 private:
 	int score;
+	int handle;
 };
 
 #endif

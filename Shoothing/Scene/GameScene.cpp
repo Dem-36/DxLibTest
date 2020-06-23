@@ -13,57 +13,8 @@
 
 void GameScene::Initialize()
 {
-	player = new Player();
-	backGround = new BackGround("nv_01.mp3", &player->transform);
-	AddGameObject(backGround);
-
-	//Subscribe“à‚ÅŠÖ”‚ð“o˜^‚·‚é
-	//‚±‚±‚ÅŒ¾‚¤ŠÖ”‚Í[this](Transform`‚Ì•”•ª
-	//Subscribe‚ÅŠÖ”“o˜^ -> Player“à‚ÅOnNext‚ðŒÄ‚Ô = “o˜^‚µ‚½ŠÖ”‚ðŽÀs‚Æ‚¢‚¤—¬‚ê
-	player->OnShotButton()->Subscribe([this](Transform transform) {
-		AddGameObject(new Bullet(&transform));
-		});
-	player->OnHit()->Subscribe([this](Transform transform) {
-		AddGameObject(new Bomb(&transform));
-		backGround->StopBGM();
-		});
-	AddGameObject(player);
-
-	//ƒGƒlƒ~[¶¬ˆÊ’u“o˜^
-	spawner = new EnemySpawner();
-
-	//ƒGƒlƒ~[¶¬
-	spawner->OnSpawn()->Subscribe([this](SPAWN_TYPE type) {
-		Enemy* enemy = nullptr;
-		float r = Random::Range(0.0f, 100.0f);
-		if (r <= 20.0f)
-			enemy = new Enemy(new ChaseAI(player), "Enemy02.png", type, 4);
-		else if(r < 60.0f)
-			enemy = new Enemy(new StraightAI(type), "Enemy01.png", type, 1);
-		else if(r<=70.0f)
-			enemy = new Enemy(new ChaseAI(player), "Enemy03.png", type, 1);
-		else
-			enemy = new Enemy(new StraightAI(type), "Enemy04.png", type, 1);
-
-		//UŒ‚‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ìˆ—“o˜^
-		enemy->OnHit()->Subscribe([this](EnemyHitInfo info) {
-			int exp = info.exp;
-			while (0 < exp) {
-				int gemExp = Random::Range(1, 4);
-				ScoreGem* gem = new ScoreGem(player,&info.t, gemExp);
-				gem->OnHit()->Subscribe([this](int e) {player->AddExp(e); });
-				AddGameObject(gem);
-				exp -= gem->GetExp();
-			}
-			score->AddScore();
-			AddGameObject(new Bomb(&info.t));
-			});
-		AddGameObject(enemy);
-		});
-	score = new Score();
-
-	AddGameObject(score);
-	AddGameObject(spawner);
+	ObjectInitialize();
+	SubjectSetting();
 }
 
 void GameScene::Update()
@@ -84,6 +35,68 @@ void GameScene::Draw(Renderer* renderer)
 void GameScene::Release()
 {
 	GameObjectManager::Instance()->Release();
+}
+
+void GameScene::ObjectInitialize()
+{
+	player = new Player();
+	backGround = new BackGround("nv_01.mp3", &player->transform);
+	//ƒGƒlƒ~[¶¬ˆÊ’u“o˜^
+	spawner = new EnemySpawner();
+	score = new Score();
+}
+
+void GameScene::SubjectSetting()
+{
+	AddGameObject(backGround);
+
+#pragma region Player
+	//Subscribe“à‚ÅŠÖ”‚ð“o˜^‚·‚é
+	//‚±‚±‚ÅŒ¾‚¤ŠÖ”‚Í[this](Transform`‚Ì•”•ª
+	//Subscribe‚ÅŠÖ”“o˜^ -> Player“à‚ÅOnNext‚ðŒÄ‚Ô = “o˜^‚µ‚½ŠÖ”‚ðŽÀs‚Æ‚¢‚¤—¬‚ê
+	player->OnShotButton()->Subscribe([this](Transform transform) {
+		AddGameObject(new Bullet(&transform));
+		});
+	player->OnHit()->Subscribe([this](Transform transform) {
+		AddGameObject(new Bomb(&transform));
+		backGround->StopBGM();
+		});
+	AddGameObject(player);
+#pragma endregion
+
+#pragma region Enemy
+	//ƒGƒlƒ~[¶¬
+	spawner->OnSpawn()->Subscribe([this](SPAWN_TYPE type) {
+		Enemy* enemy = nullptr;
+		float r = Random::Range(0.0f, 100.0f);
+		if (r <= 20.0f)
+			enemy = new Enemy(new ChaseAI(player), "Enemy02.png", type, 4);
+		else if (r < 60.0f)
+			enemy = new Enemy(new StraightAI(type), "Enemy01.png", type, 1);
+		else if (r <= 70.0f)
+			enemy = new Enemy(new ChaseAI(player), "Enemy03.png", type, 1);
+		else
+			enemy = new Enemy(new StraightAI(type), "Enemy04.png", type, 1);
+
+		//UŒ‚‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ìˆ—“o˜^
+		enemy->OnHit()->Subscribe([this](EnemyHitInfo info) {
+			int exp = info.exp;
+			while (0 < exp) {
+				int gemExp = Random::Range(1, 4);
+				ScoreGem* gem = new ScoreGem(player, &info.t, gemExp);
+				gem->OnHit()->Subscribe([this](int e) {player->AddExp(e); });
+				AddGameObject(gem);
+				exp -= gem->GetExp();
+			}
+			score->AddScore();
+			AddGameObject(new Bomb(&info.t));
+			});
+		AddGameObject(enemy);
+		});
+	AddGameObject(spawner);
+#pragma endregion
+
+	AddGameObject(score);
 }
 
 /// <summary>

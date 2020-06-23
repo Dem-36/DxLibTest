@@ -19,6 +19,8 @@ public:
 	void Release();
 
 private:
+	void ObjectInitialize();
+	void SubjectSetting();
 	void AddGameObject(GameObject* object);
 private:
 	Player* player;

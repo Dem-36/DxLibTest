@@ -7,19 +7,19 @@ BackGround::BackGround(std::string bgmName, Transform* t_Player)
 {
 	transform.position = Vector2();
 	transform.spriteSize = Vector2();
-	soundHandle = ResourceManager::Instance()->LoadSoundResource(bgmName);
+	bgmHandle = api.LoadSound(bgmName,SOUND_TYPE::BGM);
 	this->t_Player = t_Player;
 }
 
 BackGround::~BackGround()
 {
-	StopSoundMem(soundHandle);
+	AudioManager::Instance()->StopBGM();
 }
 
 void BackGround::Initialize()
 {
 	handle = ResourceManager::Instance()->LoadImageResource("5.png");
-	//PlaySoundMem(soundHandle, DX_PLAYTYPE_LOOP);
+	api.PlayBGM(bgmHandle);
 }
 
 void BackGround::Update()
@@ -44,5 +44,5 @@ void BackGround::Draw(Renderer* renderer)
 
 void BackGround::StopBGM()
 {
-	StopSoundMem(soundHandle);
+	api.StopBGM();
 }

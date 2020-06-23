@@ -6,20 +6,18 @@
 #include"DxLib.h"
 #include"../Singleton.h"
 
-using namespace std;
-
 //Flywrightパターンを利用したリソース管理クラス
 class ResourceManager:public Singleton<ResourceManager>
 {
 public:
 	void Release()override;
-	int LoadImageResource(string fileName);
-	int* LoadAminImageResource(string fileName, int allNum, int xNum, int yNum, int xSize, int ySize);
-	int LoadSoundResource(string fileName);
+	int LoadImageResource(std::string fileName);
+	int* LoadAminImageResource(std::string fileName, int allNum, int xNum, int yNum, int xSize, int ySize);
+	int LoadFontResource(std::string fileName,int fontSize,int thick);
 private:
 	//リソースのハンドラを格納する
-	map<string, int> resourceMap;
-	map<string, int*> animMap;
+	std::map<std::string, int> resourceMap;
+	std::map<std::string, int*> animMap;
 };
 #endif
 

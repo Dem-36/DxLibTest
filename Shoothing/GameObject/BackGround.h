@@ -4,6 +4,7 @@
 #include"DxLib.h"
 #include"GameObject.h"
 #include<math.h>
+#include"../AudioAPI.h"
 
 class BackGround:public GameObject
 {
@@ -19,7 +20,8 @@ public:
 
 private:
 	int handle;
-	int soundHandle;
+	int bgmHandle;
+	AudioAPI api;
 	const Transform* t_Player;
 };
 #endif

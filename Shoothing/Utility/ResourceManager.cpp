@@ -1,7 +1,6 @@
 #include "ResourceManager.h"
 
 #define IMG_PATH "Resource\\img\\"
-#define SND_PATH "Resource\\sound\\"
 
 //連番画像を開放する
 void ResourceManager::Release()
@@ -12,7 +11,7 @@ void ResourceManager::Release()
 }
 
 //画像を登録する
-int ResourceManager::LoadImageResource(string fileName)
+int ResourceManager::LoadImageResource(std::string fileName)
 {
 	//指定したリソースが存在するならハンドルを返す
 	if (resourceMap.find(fileName) == resourceMap.end())
@@ -21,7 +20,7 @@ int ResourceManager::LoadImageResource(string fileName)
 }
 
 //連番画像を登録する
-int* ResourceManager::LoadAminImageResource(string fileName, int allNum, int xNum, int yNum, int xSize, int ySize)
+int* ResourceManager::LoadAminImageResource(std::string fileName, int allNum, int xNum, int yNum, int xSize, int ySize)
 {
 	if (animMap.find(fileName) == animMap.end()) {
 		//指定した数分メモリを確保
@@ -37,12 +36,10 @@ int* ResourceManager::LoadAminImageResource(string fileName, int allNum, int xNu
 	return animMap[fileName];
 }
 
-//音源を登録する
-int ResourceManager::LoadSoundResource(string fileName) {
-
-	//指定したリソースが存在するならハンドルを返す
+//フォントデータの作成、登録
+int ResourceManager::LoadFontResource(std::string fileName, int fontSize, int thick)
+{
 	if (resourceMap.find(fileName) == resourceMap.end())
-		resourceMap[fileName] = LoadSoundMem((SND_PATH + fileName).c_str());
-
+		resourceMap[fileName] = CreateFontToHandle(fileName.c_str(), fontSize,  thick);
 	return resourceMap[fileName];
 }

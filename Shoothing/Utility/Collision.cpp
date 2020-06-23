@@ -1,7 +1,7 @@
 #include"Collision.h"
 #include"Rectangle.h"
 
-/// <summary>
+/// /// <summary>
 /// ‹éŒ`‚Ì“–‚½‚è”»’è
 /// </summary>
 /// <param name="obj1"></param>
@@ -18,6 +18,23 @@ bool Collision::OnHitRect(const Transform* obj1, const Transform* obj2)
 		rect2.Top() < rect1.Bottom()) {
 		return true;
 	}
+
+	return false;
+}
+
+/// <summary>
+/// ‰~‚Æ‰~‚Ì“–‚½‚è”»’è
+/// </summary>
+/// <param name="obj1"></param>
+/// <param name="r1"></param>
+/// <param name="obj2"></param>
+/// <param name="r2"></param>
+/// <returns></returns>
+bool Collision::OnHitCircle(const Transform* obj1, const float r1, const Transform* obj2, const float r2)
+{
+	float dist = Vector2::Distance(obj1->position, obj2->position);
+	if (dist < (r1 + r2))
+		return true;
 
 	return false;
 }

@@ -20,7 +20,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	handle = ResourceManager::Instance()->LoadImageResource("2.png");
-	soundHandle = ResourceManager::Instance()->LoadSoundResource("laser2.mp3");
+	soundHandle = api.LoadSound("laser2.mp3");
 	transform.position = Vector2(320, 240);
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
 	velocity = Vector2::Zero();
@@ -90,12 +90,12 @@ void Player::NWayShot(int shotCount,float shotRange)
 			t.position = pos;
 			t.angle = angle;
 			shotSubject.OnNext(t);
-			PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
+			api.PlaySE(soundHandle);
 		}
 	}
 	else if (shotCount > 0) {
 		shotSubject.OnNext(transform);
-		PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
+		api.PlaySE(soundHandle);
 	}
 }
 

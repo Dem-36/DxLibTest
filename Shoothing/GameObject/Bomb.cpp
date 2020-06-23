@@ -16,9 +16,9 @@ Bomb::~Bomb()
 void Bomb::Initialize()
 {
 	anim.SetAnim("Bomb.png", 8, 8, 1, 82, 72, 0.05f);
-	snd = ResourceManager::Instance()->LoadSoundResource("bomb.mp3");
+	seHandle = api.LoadSound("bomb.mp3");
 	this->transform.spriteSize = DxLibExpansion::GetSpriteSize(anim.GetAnimHandle());
-	PlaySoundMem(snd, DX_PLAYTYPE_BACK);
+	api.PlaySE(seHandle);
 }
 
 void Bomb::Update()

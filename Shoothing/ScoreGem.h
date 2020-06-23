@@ -23,6 +23,6 @@ private:
 	float speed;
 	Animation anim;
 	Subject<int> hitSubject;
-	GameObject* player;
+	const GameObject* player;
 };
 #endif

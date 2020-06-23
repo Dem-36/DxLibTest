@@ -33,7 +33,7 @@ void Enemy::Initialize()
 {
 	transform.angle = 0;
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
-	soundHandle = ResourceManager::Instance()->LoadSoundResource("damage1.mp3");
+	soundHandle = api.LoadSound("damage1.mp3");
 
 	float c = 40.0f;
 	float r = 10.0f;
@@ -78,7 +78,7 @@ void Enemy::OnHitBox(GameObject* other)
 		info.t.angle = transform.angle;
 		info.exp = exp;
 		hitSubject.OnNext(info);
-		PlaySoundMem(soundHandle, DX_PLAYTYPE_BACK);
+		api.PlaySE(soundHandle);
 		Destroy();
 	}
 }

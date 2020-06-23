@@ -5,6 +5,7 @@
 #include"../Subject.h"
 #include"../Time.h"
 #include"../ExpManager.h"
+#include"../AudioAPI.h"
 
 #define SHOT_DELAYTIME 0.25f
 
@@ -34,6 +35,7 @@ private:
 	Time timer{ SHOT_DELAYTIME };
 	int handle;
 	ExpManager expManager;
+	AudioAPI api;
 };
 
 #endif

@@ -3,11 +3,14 @@
 #include"../Utility/Random.h"
 #include"../GameObject/GameObjectManager.h"
 #include"../Utility/ResourceManager.h"
+#include"../AudioManager.h"
 
 #define SAFE_RELEASE(x) if(x!=NULL){delete x;x = NULL;}
 
 void SceneManager::Initialize()
 {
+	AudioManager::Instance()->SetVolume(64);
+	AudioManager::Instance()->SetVolume(128,SOUND_TYPE::BGM);
 	fadeManager.OnFade()->Subscribe([this](FADE_TYPE type) {
 		switch (type) {
 			//フェードIN終了
@@ -91,6 +94,8 @@ void SceneManager::Release()
 	InputManager::Instance()->DestroyInstance();
 	ResourceManager::Instance()->Release();
 	ResourceManager::Instance()->DestroyInstance();
+	AudioManager::Instance()->Release();
+	AudioManager::Instance()->DestroyInstance();
 	GameObjectManager::Instance()->DestroyInstance();
 	this->DestroyInstance();
 }

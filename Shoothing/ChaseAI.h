@@ -10,7 +10,7 @@ public:
 	~ChaseAI();
 	void Think(GameObject* object)override;
 private:
-	GameObject* target = nullptr;
+	const GameObject* target = nullptr;
 };
 
 #endif

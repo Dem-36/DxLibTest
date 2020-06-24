@@ -17,8 +17,8 @@ Enemy::Enemy(AI* ai, Vector2 position)
 	tag = "Enemy";
 }
 
-Enemy::Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type,int exp)
-	:ai(ai), type(type),exp(exp)
+Enemy::Enemy(AI* ai, std::string resourceName, SPAWN_TYPE type, int exp, int hp)
+	:ai(ai), type(type), exp(exp), hp(hp)
 {
 	handle = ResourceManager::Instance()->LoadImageResource(resourceName);
 	tag = "Enemy";
@@ -73,22 +73,32 @@ void Enemy::Draw(Renderer* renderer)
 void Enemy::OnHitBox(GameObject* other)
 {
 	if (other->tag == "Bullet") {
-		EnemyHitInfo info;
-		info.t.position = transform.position;
-		info.t.angle = transform.angle;
-		info.exp = exp;
-		hitSubject.OnNext(info);
+		hp--;
+		if (hp <= 0) {
+			EnemyHitInfo info;
+			info.t.position = transform.position;
+			info.t.angle = transform.angle;
+			info.exp = exp;
+			dropSubject.OnNext(info);
+			hitSubject.OnNext(transform);
+			api.PlaySE(soundHandle);
+			Destroy();
+		}
+	}
+	else if (other->tag == "Player") {
+		hp = 0;
+		hitSubject.OnNext(transform);
 		api.PlaySE(soundHandle);
 		Destroy();
 	}
 }
 
-int Enemy::GetExp() const noexcept
-{
-	return exp;
-}
-
-IObservable<EnemyHitInfo>* Enemy::OnHit()
+IObservable<Transform>* Enemy::OnHit()
 {
 	return &hitSubject;
+}
+
+IObservable<EnemyHitInfo>* Enemy::OnDrop()
+{
+	return &dropSubject;
 }

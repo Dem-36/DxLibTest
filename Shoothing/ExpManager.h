@@ -11,13 +11,14 @@ public:
 	void AddExp(int exp);
 	int GetNeedExp(int level);
 	IObservable<char>* OnLevelUp();
+	float ExpRatio();
 private:
 	int nextExpBase;
 	int nextExpInterval;
 	int level;
-	int exp;
-	int prevNeedExp;
-	int needExp;
+	float exp;
+	float prevNeedExp;
+	float needExp;
 	Subject<char> levelUpSubject;
 };
 

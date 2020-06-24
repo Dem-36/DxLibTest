@@ -8,7 +8,6 @@
 #include"../SpawnType.h"
 #include"../AudioAPI.h"
 
-enum class SPAWN_TYPE;
 struct EnemyHitInfo {
 	Transform t;
 	int exp;
@@ -19,7 +18,7 @@ class Enemy :public GameObject
 public:
 	Enemy();
 	Enemy(AI* ai, Vector2 position);
-	Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type,int exp);
+	Enemy(AI* ai,std::string resourceName, SPAWN_TYPE type,int exp,int hp);
 	~Enemy();
 
 	void Initialize();
@@ -27,15 +26,17 @@ public:
 	void Draw(Renderer* renderer);
 	void OnHitBox(GameObject* other);
 
-	int GetExp()const noexcept;
-	IObservable<EnemyHitInfo>* OnHit();
+	IObservable<Transform>* OnHit();
+	IObservable<EnemyHitInfo>* OnDrop();
 
 private:
 	int handle;
 	int soundHandle;
 	int exp;
+	int hp;
 	SPAWN_TYPE type;
-	Subject<EnemyHitInfo> hitSubject;
+	Subject<Transform> hitSubject;
+	Subject<EnemyHitInfo> dropSubject;
 	AI* ai;
 	AudioAPI api;
 };

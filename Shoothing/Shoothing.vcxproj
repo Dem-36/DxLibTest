@@ -162,6 +162,8 @@
     <ClCompile Include="GameObject\Bomb.cpp" />
     <ClCompile Include="GameObject\Box.cpp" />
     <ClCompile Include="GameObject\Bullet.cpp" />
+    <ClCompile Include="GameSceneCanvas.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="ScoreGem.cpp" />
     <ClCompile Include="StraightAI.cpp" />
@@ -190,11 +192,14 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AudioAPI.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BaseCanvas.h" />
     <ClInclude Include="ChaseAI.h" />
     <ClInclude Include="DxLibExpansion.h" />
     <ClInclude Include="Easing.h" />
     <ClInclude Include="ExpManager.h" />
     <ClInclude Include="FadeManager.h" />
+    <ClInclude Include="GameSceneCanvas.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ScoreGem.h" />
     <ClInclude Include="Singleton.h" />

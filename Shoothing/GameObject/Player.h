@@ -22,6 +22,7 @@ public:
 	//Õ“Ë‚ÌƒCƒxƒ“ƒg‚ğ“o˜^
 	IObservable<Transform>* OnHit();
 	void AddExp(int exp);
+	float ExpRatio();
 private:
 	void Move();
 	void Shot();
@@ -32,8 +33,9 @@ private:
 	Subject<Transform> hitSubject;
 	Vector2 velocity;
 	int soundHandle;
-	Time timer{ SHOT_DELAYTIME };
 	int handle;
+	int hp;
+	Time timer{ SHOT_DELAYTIME };
 	ExpManager expManager;
 	AudioAPI api;
 };

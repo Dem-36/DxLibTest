@@ -6,8 +6,8 @@
 #include"../GameObject/Player.h"
 #include"../GameObject/BackGround.h"
 #include"../GameObject/EnemySpawner.h"
-#include"../GameObject/Score.h"
 #include"IScene.h"
+#include"../GameSceneCanvas.h"
 
 //ゲームプレイシーン
 class GameScene:public IScene
@@ -26,7 +26,7 @@ private:
 	Player* player;
 	BackGround* backGround;
 	EnemySpawner* spawner;
-	Score* score;
+	GameSceneCanvas canvas;
 };
 #endif
 

@@ -13,6 +13,7 @@
 
 void GameScene::Initialize()
 {
+	canvas.Initialize();
 	ObjectInitialize();
 	SubjectSetting();
 }
@@ -43,13 +44,11 @@ void GameScene::ObjectInitialize()
 	backGround = new BackGround("nv_01.mp3", &player->transform);
 	//ƒGƒlƒ~[¶¬ˆÊ’u“o˜^
 	spawner = new EnemySpawner();
-	score = new Score();
 }
 
 void GameScene::SubjectSetting()
 {
 	AddGameObject(backGround);
-
 #pragma region Player
 	//Subscribe“à‚ÅŠÖ”‚ğ“o˜^‚·‚é
 	//‚±‚±‚ÅŒ¾‚¤ŠÖ”‚Í[this](Transform`‚Ì•”•ª
@@ -70,33 +69,39 @@ void GameScene::SubjectSetting()
 		Enemy* enemy = nullptr;
 		float r = Random::Range(0.0f, 100.0f);
 		if (r <= 20.0f)
-			enemy = new Enemy(new ChaseAI(player), "Enemy02.png", type, 4);
+			enemy = new Enemy(new ChaseAI(player), "Enemy02.png", type, 2, 2);
 		else if (r < 60.0f)
-			enemy = new Enemy(new StraightAI(type), "Enemy01.png", type, 1);
+			enemy = new Enemy(new StraightAI(type), "Enemy01.png", type, 1, 1);
 		else if (r <= 70.0f)
-			enemy = new Enemy(new ChaseAI(player), "Enemy03.png", type, 1);
+			enemy = new Enemy(new ChaseAI(player), "Enemy03.png", type, 4, 4);
 		else
-			enemy = new Enemy(new StraightAI(type), "Enemy04.png", type, 1);
+			enemy = new Enemy(new StraightAI(type), "Enemy04.png", type, 6, 6);
 
 		//UŒ‚‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ìˆ—“o˜^
-		enemy->OnHit()->Subscribe([this](EnemyHitInfo info) {
+		enemy->OnHit()->Subscribe([this](Transform transform) {
+			AddGameObject(new Bomb(&transform));
+			});
+		enemy->OnDrop()->Subscribe([this](EnemyHitInfo info) {
 			int exp = info.exp;
 			while (0 < exp) {
 				int gemExp = Random::Range(1, 4);
 				ScoreGem* gem = new ScoreGem(player, &info.t, gemExp);
-				gem->OnHit()->Subscribe([this](int e) {player->AddExp(e); });
+				gem->OnHit()->Subscribe([this](int e) {
+					player->AddExp(e);
+					canvas.energyGaugeImage->ratio = player->ExpRatio();
+					});
 				AddGameObject(gem);
 				exp -= gem->GetExp();
 			}
-			score->AddScore();
-			AddGameObject(new Bomb(&info.t));
+			canvas.score->AddScore();
 			});
 		AddGameObject(enemy);
 		});
 	AddGameObject(spawner);
 #pragma endregion
 
-	AddGameObject(score);
+	canvas.energyGaugeImage->ratio = player->ExpRatio();
+	canvas.AddObject();
 }
 
 /// <summary>

@@ -10,6 +10,7 @@ Player::Player()
 {
 	tag = "Player";
 	timer.SetLimitTime(SHOT_DELAYTIME);
+	hp = 10;
 }
 
 Player::~Player()
@@ -28,6 +29,7 @@ void Player::Initialize()
 
 	expManager.OnLevelUp()->Subscribe([this](char c) {
 		NWayShot(30, 360.0f);
+		hp = 10;
 	});
 }
 
@@ -113,8 +115,11 @@ void Player::OnHitBox(GameObject* other)
 {
 	//“G‚ÆÚG
 	if (other->tag == "Enemy") {
-		//hitSubject.OnNext(transform);
-		//Destroy();
+		hp--;
+		if (hp <= 0) {
+			hitSubject.OnNext(transform);
+			Destroy();
+		}
 	}
 }
 
@@ -126,4 +131,8 @@ IObservable<Transform>* Player::OnHit()
 void Player::AddExp(int exp)
 {
 	expManager.AddExp(exp);
+}
+
+float Player::ExpRatio() {
+	return expManager.ExpRatio();
 }

@@ -1,8 +1,8 @@
 #include "ExpManager.h"
 
-ExpManager::ExpManager(){}
+ExpManager::ExpManager() {}
 
-void ExpManager::Initialize(int level,int nextExpBase, int nextExpInterval)
+void ExpManager::Initialize(int level, int nextExpBase, int nextExpInterval)
 {
 	this->level = level;
 	this->nextExpBase = nextExpBase;
@@ -30,4 +30,13 @@ int ExpManager::GetNeedExp(int level)
 IObservable<char>* ExpManager::OnLevelUp()
 {
 	return &levelUpSubject;
+}
+
+/// <summary>
+/// 必要経験値の割合
+/// </summary>
+/// <returns></returns>
+float ExpManager::ExpRatio()
+{
+	return (exp - prevNeedExp) / (needExp - prevNeedExp);
 }

@@ -15,7 +15,7 @@ void GameSceneCanvas::Initialize()
 	hpGaugeImage = new Image("health-bar-fill.png");
 	hpGaugeBar = new Image("health-bar.png");
 
-	Vector2 pos = energyGaugeBar->transform.spriteSize;
+	Vector2 pos = energyGaugeBar->transform.spriteSize-Vector2(30.0f,0.0f);
 	energyGaugeBar->transform.position = pos;
 	energyGaugeImage->transform.position = pos;
 

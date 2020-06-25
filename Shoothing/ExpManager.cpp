@@ -1,4 +1,7 @@
 #include "ExpManager.h"
+#include"Utility\ResourceManager.h"
+#include"Screen.h"
+#include<string>
 
 ExpManager::ExpManager() {}
 
@@ -8,6 +11,13 @@ void ExpManager::Initialize(int level, int nextExpBase, int nextExpInterval)
 	this->nextExpBase = nextExpBase;
 	this->nextExpInterval = nextExpInterval;
 	needExp = GetNeedExp(1);
+	handle = ResourceManager::Instance()->LoadFontResource("Orbitron", 18, 3);
+}
+
+void ExpManager::Draw(Renderer* renderer)
+{
+	std::string tex = "LEVEL " + std::to_string(level);
+	renderer->DrawStringToHandle(Vector2(WINDOW_WIDTH / 2.0f - 50.0f, 10.0f), tex.c_str(), GetColor(255, 255, 255), handle);
 }
 
 void ExpManager::AddExp(int exp)

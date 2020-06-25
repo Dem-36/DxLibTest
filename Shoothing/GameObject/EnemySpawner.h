@@ -24,7 +24,10 @@ public:
 
 private:
 	Subject<SPAWN_TYPE> spawnSubject;
-	Time time{ 0.25f };
+	float interval_From;
+	float interval_To;
+	Time time{ 1.0f };
+	Time totalTimer{ 120.0f };
 };
 
 #endif

@@ -20,9 +20,6 @@ void GameScene::Initialize()
 
 void GameScene::Update()
 {
-	if (player->IsDestroy()) {
-		SceneManager::Instance()->LoadScene(new Title());
-	}
 	GameObjectManager::Instance()->Update();
 	GameObjectManager::Instance()->HitCheck();
 	GameObjectManager::Instance()->DestroyCheck();
@@ -65,6 +62,7 @@ void GameScene::SubjectSetting()
 	player->OnDead()->Subscribe([this](Transform transform) {
 		AddGameObject(new Bomb(&transform));
 		backGround->StopBGM();
+		SceneManager::Instance()->LoadScene(new Title());
 		});
 	player->OnLevelUp()->Subscribe([this](Transform transform) {
 		canvas.hpGaugeImage->ratio = player->HPRatio();

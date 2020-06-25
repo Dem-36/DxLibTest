@@ -13,8 +13,8 @@ Score::~Score()
 void Score::Initialize()
 {
 	score = 0;
-	transform.position = Vector2(400, 0);
-	handle = ResourceManager::Instance()->LoadFontResource("Orbitron", 20, 3);
+	transform.position = Vector2(450, 10);
+	handle = ResourceManager::Instance()->LoadFontResource("Orbitron", 18, 3);
 }
 
 void Score::Update()

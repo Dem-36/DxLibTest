@@ -46,7 +46,7 @@ void Player::Update()
 void Player::Draw(Renderer* renderer)
 {
 	renderer->DrawRotaGraph(transform.position, 1.0f, transform.angle, handle, TRUE, TRUE);
-	renderer->DrawString(Vector2(0, 50), std::to_string(timer.GetNowTime()).c_str());
+	expManager.Draw(renderer);
 }
 
 //ˆÚ“®

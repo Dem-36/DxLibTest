@@ -7,7 +7,8 @@
 #include"../ExpManager.h"
 #include"../AudioAPI.h"
 
-#define SHOT_DELAYTIME 0.25f
+#define SHOT_DELAYTIME 0.1f
+#define MAX_HP 5.0f
 
 class Player:public GameObject
 {
@@ -21,8 +22,11 @@ public:
 	void OnHitBox(GameObject* other);
 	//è’ìÀéûÇÃÉCÉxÉìÉgÇìoò^
 	IObservable<Transform>* OnHit();
+	IObservable<Transform>* OnDead();
+	IObservable<Transform>* OnLevelUp();
 	void AddExp(int exp);
 	float ExpRatio();
+	float HPRatio();
 private:
 	void Move();
 	void Shot();
@@ -31,10 +35,12 @@ private:
 private:
 	Subject<Transform> shotSubject;
 	Subject<Transform> hitSubject;
+	Subject<Transform> deadSubject;
+	Subject<Transform> levelUpSubject;
 	Vector2 velocity;
 	int soundHandle;
 	int handle;
-	int hp;
+	float hp;
 	Time timer{ SHOT_DELAYTIME };
 	ExpManager expManager;
 	AudioAPI api;

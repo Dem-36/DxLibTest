@@ -37,6 +37,12 @@
     <Filter Include="ソース ファイル\GameObject\AI">
       <UniqueIdentifier>{3938f529-35e5-4a94-914c-f632c31f3e8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Canvas">
+      <UniqueIdentifier>{c66c03ad-bf5c-4fb0-8cdf-12e3dc869935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Canvas">
+      <UniqueIdentifier>{e2f330af-e726-465a-a123-4b64887ecf6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -142,7 +148,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameSceneCanvas.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Canvas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,11 +290,11 @@
     <ClInclude Include="Image.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="BaseCanvas.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GameSceneCanvas.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCanvas.h">
+      <Filter>ヘッダー ファイル\Canvas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

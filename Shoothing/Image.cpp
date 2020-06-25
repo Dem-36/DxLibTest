@@ -8,7 +8,7 @@ Image::Image(std::string fileName)
 {
 	imageHandle = ResourceManager::Instance()->LoadImageResource(fileName);
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(imageHandle);
-	ratio = 0.0f;
+	ratio = 1.0f;
 }
 
 Image::~Image()
@@ -29,11 +29,11 @@ void Image::Draw(Renderer* renderer)
 	else if (type == ImageType::Fill_X) {
 		ratio = Math::Clamp(ratio, 0.0f, 1.0f);
 		Vector2 size = Vector2(transform.spriteSize.x * ratio, transform.spriteSize.y);
-		renderer->DrawRectGraph(transform.position, struct Rectangle(Vector2(), size), imageHandle);
+		renderer->DrawRectGraph_C(transform, struct Rectangle(Vector2(), size), imageHandle);
 	}
 	else if (type == ImageType::Fill_Y) {
 		ratio = Math::Clamp(ratio, 0.0f, 1.0f);
 		Vector2 size = Vector2(transform.spriteSize.x, transform.spriteSize.y * ratio);
-		renderer->DrawRectGraph(transform.position, struct Rectangle(Vector2(), size), imageHandle);
+		renderer->DrawRectGraph_C(transform, struct Rectangle(Vector2(), size), imageHandle);
 	}
 }

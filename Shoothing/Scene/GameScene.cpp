@@ -26,16 +26,19 @@ void GameScene::Update()
 	GameObjectManager::Instance()->Update();
 	GameObjectManager::Instance()->HitCheck();
 	GameObjectManager::Instance()->DestroyCheck();
+	canvas.Update();
 }
 
 void GameScene::Draw(Renderer* renderer)
 {
 	GameObjectManager::Instance()->Draw(renderer);
+	canvas.Draw(renderer);
 }
 
 void GameScene::Release()
 {
 	GameObjectManager::Instance()->Release();
+	canvas.Release();
 }
 
 void GameScene::ObjectInitialize()
@@ -57,8 +60,14 @@ void GameScene::SubjectSetting()
 		AddGameObject(new Bullet(&transform));
 		});
 	player->OnHit()->Subscribe([this](Transform transform) {
+		canvas.hpGaugeImage->ratio = player->HPRatio();
+		});
+	player->OnDead()->Subscribe([this](Transform transform) {
 		AddGameObject(new Bomb(&transform));
 		backGround->StopBGM();
+		});
+	player->OnLevelUp()->Subscribe([this](Transform transform) {
+		canvas.hpGaugeImage->ratio = player->HPRatio();
 		});
 	AddGameObject(player);
 #pragma endregion
@@ -101,7 +110,6 @@ void GameScene::SubjectSetting()
 #pragma endregion
 
 	canvas.energyGaugeImage->ratio = player->ExpRatio();
-	canvas.AddObject();
 }
 
 /// <summary>

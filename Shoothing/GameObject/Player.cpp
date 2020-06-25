@@ -10,7 +10,7 @@ Player::Player()
 {
 	tag = "Player";
 	timer.SetLimitTime(SHOT_DELAYTIME);
-	hp = 10;
+	hp = MAX_HP;
 }
 
 Player::~Player()
@@ -29,8 +29,9 @@ void Player::Initialize()
 
 	expManager.OnLevelUp()->Subscribe([this](char c) {
 		NWayShot(30, 360.0f);
-		hp = 10;
-	});
+		hp = MAX_HP;
+		levelUpSubject.OnNext(transform);
+		});
 }
 
 void Player::Update()
@@ -71,7 +72,7 @@ void Player::Shot()
 	if (InputManager::Instance()->GetKey(KEY_INPUT_SPACE)) {
 		timer.Update();
 		if (timer.IsTime()) {
-			NWayShot(3,30.0f);
+			NWayShot(3, 30.0f);
 			timer.Initialize();
 		}
 	}
@@ -79,7 +80,7 @@ void Player::Shot()
 		timer.Initialize();
 }
 
-void Player::NWayShot(int shotCount,float shotRange)
+void Player::NWayShot(int shotCount, float shotRange)
 {
 	Vector2 pos = transform.position;
 	float baseAngle = transform.angle;
@@ -116,8 +117,9 @@ void Player::OnHitBox(GameObject* other)
 	//“G‚ÆÚG
 	if (other->tag == "Enemy") {
 		hp--;
+		hitSubject.OnNext(transform);
 		if (hp <= 0) {
-			hitSubject.OnNext(transform);
+			deadSubject.OnNext(transform);
 			Destroy();
 		}
 	}
@@ -128,6 +130,16 @@ IObservable<Transform>* Player::OnHit()
 	return &hitSubject;
 }
 
+IObservable<Transform>* Player::OnDead()
+{
+	return &deadSubject;
+}
+
+IObservable<Transform>* Player::OnLevelUp()
+{
+	return &levelUpSubject;
+}
+
 void Player::AddExp(int exp)
 {
 	expManager.AddExp(exp);
@@ -135,4 +147,8 @@ void Player::AddExp(int exp)
 
 float Player::ExpRatio() {
 	return expManager.ExpRatio();
+}
+
+float Player::HPRatio() {
+	return hp / MAX_HP;
 }

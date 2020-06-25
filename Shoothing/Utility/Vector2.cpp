@@ -142,6 +142,6 @@ const Vector2 operator*(float s, const Vector2& v) {
 }
 
 const Vector2 operator/(const Vector2& v, float s) {
-	assert(s == 0);
+	assert(s != 0);
 	return Vector2(v.x / s, v.y / s);
 }

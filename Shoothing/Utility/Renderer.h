@@ -4,6 +4,7 @@
 #include"DxLib.h"
 #include"Vector2.h"
 #include"Rectangle.h"
+#include"../GameObject/Transform.h"
 
 #define DEFAULT_COLOR GetColor(255,255,255)
 
@@ -120,6 +121,8 @@ public:
 	int DrawModiGraph(const Vector2& topLeftPos, const Vector2& topRightPos, const Vector2& bottomRightPos, const Vector2& bottomLeftPos, int handle, int transFlag = TRUE);
 
 	int DrawRectGraph(const Vector2& position,const struct Rectangle& rect, int handle, int transFlag = TRUE);
+
+	int DrawRectGraph_C(const Transform& transform,const struct Rectangle& rect, int handle, int transFlag = TRUE);
 
 	int GetGraphSize(int handle, int* widthBuf, int* heightBuf);
 

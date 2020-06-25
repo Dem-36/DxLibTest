@@ -257,6 +257,15 @@ int Renderer::DrawRectGraph(const Vector2& position,const struct Rectangle& rect
 		INT_CAST(rect.width), INT_CAST(rect.height), handle, transFlag);
 }
 
+//‰æ‘œ‚ğ’†S‚É•`‰æ
+int Renderer::DrawRectGraph_C(const Transform& transform, const struct Rectangle& rect, int handle, int transFlag)
+{
+	Vector2 pos = transform.position - transform.spriteSize / 2.0f;
+	return DxLib::DrawRectGraph(INT_CAST(pos.x), INT_CAST(pos.y),
+		INT_CAST(rect.x), INT_CAST(rect.y),
+		INT_CAST(rect.width), INT_CAST(rect.height), handle, transFlag);
+}
+
 //‰æ‘œ‚Ì•‚Æ‚‚³‚ğæ“¾‚·‚é •s—v‚Èê‡‚ÍNULL‚ğ‘ã“ü
 int Renderer::GetGraphSize(int handle, int* widthBuf, int* heightBuf)
 {

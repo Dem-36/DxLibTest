@@ -11,7 +11,9 @@ public:
 	GameSceneCanvas();
 
 	void Initialize()override;
-	void AddObject()override;
+	void Update()override;
+	void Draw(Renderer*renderer)override;
+	void Release();
 public:
 	Image* energyGaugeImage;
 	Image* hpGaugeImage;

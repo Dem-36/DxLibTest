@@ -25,6 +25,7 @@ void AudioManager::PlayBGM(int handle, int playType)
 	//Žw’è‚µ‚½BGM‚ª“¯‚¶‚È‚ç
 	if (currentBGMHandle == handle)
 		return;
+	StopBGM();
 	currentBGMHandle = handle;
 	PlaySoundMem(currentBGMHandle, playType);
 }

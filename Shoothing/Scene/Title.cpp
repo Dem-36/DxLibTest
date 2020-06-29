@@ -3,6 +3,8 @@
 
 void Title::Initialize()
 {
+	handle = api.LoadSound("Title.ogg", SOUND_TYPE::BGM);
+	api.PlayBGM(handle);
 }
 
 void Title::Update()

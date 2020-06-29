@@ -6,7 +6,6 @@
 #include"../Subject.h"
 #include"../AI.h"
 #include"../SpawnType.h"
-#include"../AudioAPI.h"
 
 struct EnemyHitInfo {
 	Transform t;
@@ -31,14 +30,12 @@ public:
 
 private:
 	int handle;
-	int soundHandle;
 	int exp;
 	int hp;
 	SPAWN_TYPE type;
 	Subject<Transform> hitSubject;
 	Subject<EnemyHitInfo> dropSubject;
 	AI* ai;
-	AudioAPI api;
 };
 #endif
 

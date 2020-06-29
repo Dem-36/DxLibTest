@@ -4,7 +4,9 @@
 
 PlayerAttack::PlayerAttack(const GameObject* player)
 	:player(player)
-{}
+{
+	soundHandle = api.LoadSound("Shot.wav");
+}
 
 void PlayerAttack::Shot(int shotCount, int shotRange)
 {
@@ -13,6 +15,7 @@ void PlayerAttack::Shot(int shotCount, int shotRange)
 		if (shotTimer.IsTime()) {
 			NWayShot(shotCount, shotRange);
 			shotTimer.Initialize();
+			api.PlaySE(soundHandle);
 		}
 	}
 	else

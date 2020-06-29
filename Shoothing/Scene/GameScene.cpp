@@ -41,7 +41,7 @@ void GameScene::Release()
 void GameScene::ObjectInitialize()
 {
 	player = new Player();
-	backGround = new BackGround("nv_01.mp3", &player->transform);
+	backGround = new BackGround("GamePlay.ogg", &player->transform);
 	//エネミー生成位置登録
 	spawner = new EnemySpawner();
 }

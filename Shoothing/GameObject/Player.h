@@ -34,7 +34,6 @@ private:
 	Subject<Transform> deadSubject;
 	Subject<Transform> levelUpSubject;
 	PlayerMove playerMove;
-	int soundHandle;
 	int handle;
 	float hp;
 	ExpManager expManager;

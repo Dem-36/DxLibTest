@@ -21,7 +21,6 @@ Player::~Player()
 void Player::Initialize()
 {
 	handle = ResourceManager::Instance()->LoadImageResource("2.png");
-	soundHandle = api.LoadSound("laser2.mp3");
 	transform.position = Vector2(320, 240);
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
 	expManager.Initialize(1, 16, 18);

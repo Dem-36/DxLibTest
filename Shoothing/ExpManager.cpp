@@ -12,6 +12,7 @@ void ExpManager::Initialize(int level, int nextExpBase, int nextExpInterval)
 	this->nextExpInterval = nextExpInterval;
 	needExp = GetNeedExp(1);
 	handle = ResourceManager::Instance()->LoadFontResource("Orbitron", 18, 3);
+	soundHandle = api.LoadSound("power-up-1.wav");
 }
 
 void ExpManager::Draw(Renderer* renderer)
@@ -27,6 +28,7 @@ void ExpManager::AddExp(int exp)
 		return;
 
 	level++;
+	api.PlaySE(soundHandle);
 	prevNeedExp = needExp;
 	needExp = GetNeedExp(level);
 	levelUpSubject.OnNext(' ');

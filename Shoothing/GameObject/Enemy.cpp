@@ -33,7 +33,6 @@ void Enemy::Initialize()
 {
 	transform.angle = 0;
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
-	soundHandle = api.LoadSound("damage1.mp3");
 
 	float c = 40.0f;
 	float r = 10.0f;
@@ -81,14 +80,12 @@ void Enemy::OnHitBox(GameObject* other)
 			info.exp = exp;
 			dropSubject.OnNext(info);
 			hitSubject.OnNext(transform);
-			api.PlaySE(soundHandle);
 			Destroy();
 		}
 	}
 	else if (other->tag == "Player") {
 		hp = 0;
 		hitSubject.OnNext(transform);
-		api.PlaySE(soundHandle);
 		Destroy();
 	}
 }

@@ -4,6 +4,7 @@
 #include"Subject.h"
 #include"GameObject\GameObject.h"
 #include"Time.h"
+#include"AudioAPI.h"
 
 #define SHOT_DELAYTIME 0.1f
 
@@ -21,6 +22,8 @@ private:
 	Subject<Transform> shotSubject;
 	Time shotTimer = { SHOT_DELAYTIME };
 	const GameObject* player;
+	int soundHandle;
+	AudioAPI api;
 };
 
 #endif

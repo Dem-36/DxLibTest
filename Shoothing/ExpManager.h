@@ -3,6 +3,7 @@
 
 #include"Subject.h"
 #include"Utility\Renderer.h"
+#include"AudioAPI.h"
 
 class ExpManager
 {
@@ -23,6 +24,8 @@ private:
 	float prevNeedExp;
 	float needExp;
 	Subject<char> levelUpSubject;
+	AudioAPI api;
+	int soundHandle;
 };
 
 #endif

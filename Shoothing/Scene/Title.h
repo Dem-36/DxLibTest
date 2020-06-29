@@ -13,6 +13,7 @@ public:
 	void Draw(Renderer* renderer);
 	void Release();
 private:
+	int handle;
 	AudioAPI api;
 };
 

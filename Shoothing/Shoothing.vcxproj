@@ -156,6 +156,7 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="ChaseAI.cpp" />
     <ClCompile Include="Easing.cpp" />
+    <ClCompile Include="ErrorException.cpp" />
     <ClCompile Include="ExpManager.cpp" />
     <ClCompile Include="FadeManager.cpp" />
     <ClCompile Include="GameObject\BackGround.cpp" />
@@ -165,6 +166,9 @@
     <ClCompile Include="GameSceneCanvas.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="PlayerAttack.cpp" />
+    <ClCompile Include="PlayerMove.cpp" />
+    <ClCompile Include="ResourceException.cpp" />
     <ClCompile Include="ScoreGem.cpp" />
     <ClCompile Include="StraightAI.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -196,11 +200,16 @@
     <ClInclude Include="ChaseAI.h" />
     <ClInclude Include="DxLibExpansion.h" />
     <ClInclude Include="Easing.h" />
+    <ClInclude Include="ErrorException.h" />
+    <ClInclude Include="ErrorExceptionMacro.h" />
     <ClInclude Include="ExpManager.h" />
     <ClInclude Include="FadeManager.h" />
     <ClInclude Include="GameSceneCanvas.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="PlayerAttack.h" />
+    <ClInclude Include="PlayerMove.h" />
+    <ClInclude Include="ResourceException.h" />
     <ClInclude Include="ScoreGem.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpawnType.h" />

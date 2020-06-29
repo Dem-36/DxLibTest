@@ -3,14 +3,15 @@
 #include"../Utility/Random.h"
 #include"../GameObject/GameObjectManager.h"
 #include"../Utility/ResourceManager.h"
-#include"../AudioManager.h"
+#include"../AudioManager.h"]
+#include"../ErrorExceptionMacro.h"
 
 #define SAFE_RELEASE(x) if(x!=NULL){delete x;x = NULL;}
 
 void SceneManager::Initialize()
 {
 	AudioManager::Instance()->SetVolume(64);
-	AudioManager::Instance()->SetVolume(128,SOUND_TYPE::BGM);
+	AudioManager::Instance()->SetVolume(64,SOUND_TYPE::BGM);
 	fadeManager.OnFade()->Subscribe([this](FADE_TYPE type) {
 		switch (type) {
 			//フェードIN終了
@@ -69,8 +70,6 @@ void SceneManager::Update()
 		ScreenFlip();
 		fps.Wait();
 	}
-
-	Release();
 }
 
 void SceneManager::LoadScene(IScene* scene)

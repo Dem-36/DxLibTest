@@ -1,5 +1,6 @@
 #include "AudioManager.h"
 #include"Math.h"
+#include"ErrorExceptionMacro.h"
 
 #define SND_PATH "Resource\\sound\\"
 
@@ -13,6 +14,9 @@ int AudioManager::LoadSound(std::string fileName, SOUND_TYPE type)
 		ChangeVolumeSoundMem(volume, info.handle);
 		soundContainer[fileName] = info;
 	}
+	if (soundContainer[fileName].handle == -1)
+		DX_RESOURCE_EXCEPT(fileName);
+
 	return soundContainer[fileName].handle;
 }
 

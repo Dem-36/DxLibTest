@@ -6,8 +6,9 @@
 #include"../Time.h"
 #include"../ExpManager.h"
 #include"../AudioAPI.h"
+#include"../PlayerMove.h"
+#include"../PlayerAttack.h"
 
-#define SHOT_DELAYTIME 0.1f
 #define MAX_HP 5.0f
 
 class Player:public GameObject
@@ -18,7 +19,6 @@ public:
 	void Initialize();
 	void Update();
 	void Draw(Renderer* renderer);
-	IObservable <Transform>* OnShotButton();
 	void OnHitBox(GameObject* other);
 	//Õ“Ë‚ÌƒCƒxƒ“ƒg‚ğ“o˜^
 	IObservable<Transform>* OnHit();
@@ -27,21 +27,16 @@ public:
 	void AddExp(int exp);
 	float ExpRatio();
 	float HPRatio();
+public:
+	PlayerAttack playerAttack;
 private:
-	void Move();
-	void Shot();
-	//NWay shotCount = Ëo‚·‚é’e‚Ì” shotRange = ”ÍˆÍ
-	void NWayShot(int shotCount,float shotRange);
-private:
-	Subject<Transform> shotSubject;
 	Subject<Transform> hitSubject;
 	Subject<Transform> deadSubject;
 	Subject<Transform> levelUpSubject;
-	Vector2 velocity;
+	PlayerMove playerMove;
 	int soundHandle;
 	int handle;
 	float hp;
-	Time timer{ SHOT_DELAYTIME };
 	ExpManager expManager;
 	AudioAPI api;
 };

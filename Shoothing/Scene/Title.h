@@ -3,6 +3,7 @@
 
 #include"IScene.h"
 #include"SceneManager.h"
+#include"../AudioAPI.h"
 
 class Title:public IScene
 {
@@ -11,6 +12,8 @@ public:
 	void Update();
 	void Draw(Renderer* renderer);
 	void Release();
+private:
+	AudioAPI api;
 };
 
 #endif

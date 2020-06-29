@@ -53,7 +53,7 @@ void GameScene::SubjectSetting()
 	//Subscribe“à‚ÅŠÖ”‚ð“o˜^‚·‚é
 	//‚±‚±‚ÅŒ¾‚¤ŠÖ”‚Í[this](Transform`‚Ì•”•ª
 	//Subscribe‚ÅŠÖ”“o˜^ -> Player“à‚ÅOnNext‚ðŒÄ‚Ô = “o˜^‚µ‚½ŠÖ”‚ðŽÀs‚Æ‚¢‚¤—¬‚ê
-	player->OnShotButton()->Subscribe([this](Transform transform) {
+	player->playerAttack.OnShot()->Subscribe([this](Transform transform) {
 		AddGameObject(new Bullet(&transform));
 		});
 	player->OnHit()->Subscribe([this](Transform transform) {

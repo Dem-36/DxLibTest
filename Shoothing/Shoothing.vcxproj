@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="AudioAPI.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="ChaseAI.cpp" />
     <ClCompile Include="Easing.cpp" />
@@ -177,7 +176,6 @@
     <ClCompile Include="Utility\Collision.cpp" />
     <ClCompile Include="GameObject\Enemy.cpp" />
     <ClCompile Include="GameObject\EnemySpawner.cpp" />
-    <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameObject\GameObjectManager.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Utility\InputManager.cpp" />
@@ -229,7 +227,6 @@
     <ClInclude Include="DisplayFPS.h" />
     <ClInclude Include="GameObject\Enemy.h" />
     <ClInclude Include="GameObject\EnemySpawner.h" />
-    <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
     <ClInclude Include="Scene\GameScene.h" />

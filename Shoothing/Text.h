@@ -6,13 +6,13 @@
 class Text:public GameObject
 {
 public:
-	Text(std::string text);
+	Text(const std::string& text);
 	~Text();
 
 	void Initialize()override;
 	void Update()override;
 	void Draw(Renderer* renderer)override;
-	void SetFontData(std::string fontName,int fontSize, int thick);
+	void SetFontData(const std::string& fontName,int fontSize, int thick);
 public:
 	std::string text;
 	int color;

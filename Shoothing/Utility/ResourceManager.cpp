@@ -12,7 +12,7 @@ void ResourceManager::Release()
 }
 
 //画像を登録する
-int ResourceManager::LoadImageResource(std::string fileName)
+int ResourceManager::LoadImageResource(const std::string& fileName)
 {
 	//指定したリソースが存在するならハンドルを返す
 	if (resourceMap.find(fileName) == resourceMap.end())
@@ -23,7 +23,7 @@ int ResourceManager::LoadImageResource(std::string fileName)
 }
 
 //連番画像を登録する
-int* ResourceManager::LoadAminImageResource(std::string fileName, int allNum, int xNum, int yNum, int xSize, int ySize)
+int* ResourceManager::LoadAminImageResource(const std::string& fileName, int allNum, int xNum, int yNum, int xSize, int ySize)
 {
 	if (animMap.find(fileName) == animMap.end()) {
 		//指定した数分メモリを確保
@@ -42,7 +42,7 @@ int* ResourceManager::LoadAminImageResource(std::string fileName, int allNum, in
 }
 
 //フォントデータの作成、登録
-int ResourceManager::LoadFontResource(std::string fileName, int fontSize, int thick)
+int ResourceManager::LoadFontResource(const std::string& fileName, int fontSize, int thick)
 {
 	//読み込み時、同一情報のフォントがあるかどうかを調べる
 	std::map<FontData, int>::iterator itr;

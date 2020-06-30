@@ -4,7 +4,7 @@
 #include<string>
 
 struct FontData {
-	FontData(std::string fontName,int fontSize,int thick)
+	FontData(const std::string& fontName,int fontSize,int thick)
 		:fontName(fontName),fontSize(fontSize),thick(thick){}
 	std::string fontName;
 	int fontSize;

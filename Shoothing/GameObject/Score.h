@@ -12,9 +12,13 @@ public:
 	void Update();
 	void Draw(Renderer* renderer);
 	void AddScore();
+
+public:
+	static int maxScore;
 private:
 	int score;
 	int handle;
+
 };
 
 #endif

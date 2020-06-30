@@ -4,7 +4,7 @@
 
 #define SND_PATH "Resource\\sound\\"
 
-int AudioManager::LoadSound(std::string fileName, SOUND_TYPE type)
+int AudioManager::LoadSound(const std::string& fileName, SOUND_TYPE type)
 {
 	if (soundContainer.find(fileName) == soundContainer.end()) {
 		SoundInfo info;
@@ -67,4 +67,16 @@ void AudioManager::Release()
 		DeleteSoundMem(itr->second.handle);
 		itr = soundContainer.erase(itr);
 	}
+}
+
+void AudioManager::AllAudioResources()
+{
+	LoadSound("bomb.mp3");
+	LoadSound("gold-3.wav");
+	LoadSound("laser.wav");
+	LoadSound("power-up-1.wav");
+	LoadSound("Shot.wav");
+	LoadSound("Title.ogg", SOUND_TYPE::BGM);
+	//LoadSound("GameOver.ogg", SOUND_TYPE::BGM);
+	LoadSound("GamePlay.ogg", SOUND_TYPE::BGM);
 }

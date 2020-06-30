@@ -1,4 +1,5 @@
 #include "TitleCanvas.h"
+#include"GameObject\Score.h"
 
 TitleCanvas::TitleCanvas()
 {

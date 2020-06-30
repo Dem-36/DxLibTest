@@ -43,12 +43,18 @@
     <Filter Include="ヘッダー ファイル\Canvas">
       <UniqueIdentifier>{e2f330af-e726-465a-a123-4b64887ecf6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameObject\Player">
+      <UniqueIdentifier>{04fd16fd-4783-499a-849d-ade50a9c2e9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\GameObject\Player">
+      <UniqueIdentifier>{cbd7f74b-12f9-4c7d-941c-6d73dbe05c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Observer">
+      <UniqueIdentifier>{0ae05d17-7a5d-484b-b219-6d7b85e03b70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Title.cpp">
@@ -111,78 +117,63 @@
     <ClCompile Include="Utility\Vector2.cpp">
       <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="FadeManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ChaseAI.cpp">
       <Filter>ソース ファイル\GameObject\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Easing.cpp">
       <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Time.cpp">
       <Filter>ソース ファイル\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreGem.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="ExpManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioAPI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="GameSceneCanvas.cpp">
       <Filter>ソース ファイル\Canvas</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMove.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerAttack.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="StraightAI.cpp">
       <Filter>ソース ファイル\GameObject\AI</Filter>
     </ClCompile>
-    <ClCompile Include="ErrorException.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceException.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorException.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeManager.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>ソース ファイル\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="TitleCanvas.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreGem.cpp">
+      <Filter>ソース ファイル\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceException.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
+      <Filter>ソース ファイル\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMove.cpp">
+      <Filter>ソース ファイル\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpManager.cpp">
+      <Filter>ソース ファイル\GameObject\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DisplayFPS.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMain.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="IObservable.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="IObserver.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Subject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Title.h">
@@ -260,17 +251,11 @@
     <ClInclude Include="Screen.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FadeManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>ヘッダー ファイル\GameObject\AI</Filter>
     </ClInclude>
     <ClInclude Include="ChaseAI.h">
       <Filter>ヘッダー ファイル\GameObject\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
@@ -281,32 +266,11 @@
     <ClInclude Include="Easing.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="DxLibExpansion.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="StraightAI.h">
       <Filter>ヘッダー ファイル\GameObject\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="SpawnType.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreGem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ExpManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioAPI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameSceneCanvas.h">
       <Filter>ヘッダー ファイル\Canvas</Filter>
@@ -314,29 +278,65 @@
     <ClInclude Include="BaseCanvas.h">
       <Filter>ヘッダー ファイル\Canvas</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttack.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Animation.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerMove.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="AudioAPI.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="ErrorException.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
     <ClInclude Include="ErrorExceptionMacro.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceException.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="PlayerAttack.h">
+      <Filter>ヘッダー ファイル\GameObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="PlayerMove.h">
+      <Filter>ヘッダー ファイル\GameObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="FontData.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="ExpManager.h">
+      <Filter>ヘッダー ファイル\GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="TitleCanvas.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>ヘッダー ファイル\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceException.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreGem.h">
+      <Filter>ヘッダー ファイル\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnType.h">
+      <Filter>ヘッダー ファイル\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="FontData.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeManager.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>ヘッダー ファイル\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>ヘッダー ファイル\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="IObservable.h">
+      <Filter>ヘッダー ファイル\Observer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

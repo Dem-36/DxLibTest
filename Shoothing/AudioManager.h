@@ -14,12 +14,13 @@ enum class SOUND_TYPE {
 class AudioManager :public Singleton<AudioManager>
 {
 public:
-	int LoadSound(std::string fileName, SOUND_TYPE type = SOUND_TYPE::SE);
+	int LoadSound(const std::string& fileName, SOUND_TYPE type = SOUND_TYPE::SE);
 	void PlayBGM(int handle, int playType = DX_PLAYTYPE_LOOP);
 	void PlaySE(int handle, int playType = DX_PLAYTYPE_BACK);
 	void StopBGM();
 	void SetVolume(int volume,SOUND_TYPE type = SOUND_TYPE::SE);
 	void Release()override;
+	void AllAudioResources();
 private:
 	struct SoundInfo {
 		SOUND_TYPE type;

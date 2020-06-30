@@ -7,7 +7,7 @@ Animation::Animation()
 	index = 0;
 }
 
-void Animation::SetAnim(const std::string fileName, int allNum, int xNum, int yNum, int xSize, int ySize, float time)
+void Animation::SetAnim(const std::string& fileName, int allNum, int xNum, int yNum, int xSize, int ySize, float time)
 {
 	//ëçêîï€ë∂
 	allAnimNum = allNum;

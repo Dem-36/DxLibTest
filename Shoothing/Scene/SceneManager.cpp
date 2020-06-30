@@ -3,7 +3,7 @@
 #include"../Utility/Random.h"
 #include"../GameObject/GameObjectManager.h"
 #include"../Utility/ResourceManager.h"
-#include"../AudioManager.h"]
+#include"../AudioManager.h"
 #include"../ErrorExceptionMacro.h"
 
 #define SAFE_RELEASE(x) if(x!=NULL){delete x;x = NULL;}
@@ -12,6 +12,7 @@ void SceneManager::Initialize()
 {
 	AudioManager::Instance()->SetVolume(64);
 	AudioManager::Instance()->SetVolume(64,SOUND_TYPE::BGM);
+	AudioManager::Instance()->AllAudioResources();
 	fadeManager.OnFade()->Subscribe([this](FADE_TYPE type) {
 		switch (type) {
 			//フェードIN終了

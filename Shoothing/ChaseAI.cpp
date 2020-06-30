@@ -25,7 +25,7 @@ void ChaseAI::Think(GameObject* object)
 	//float angle = Math::Atan2(y, x);
 
 	//‰æ‘œ‚ÌŒü‚¢‚Ä‚¢‚é•ûŒüƒxƒNƒgƒ‹
-	Vector2 moveVel = Vector2(0.0f, -2.5f);
+	Vector2 moveVel = Vector2(0.0f, -1.5f);
 	velocity = Algorithm::RotationMatrix_Z(moveVel, object->transform.angle);
 	object->transform.position += velocity;
 }

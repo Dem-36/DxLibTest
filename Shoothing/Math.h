@@ -40,6 +40,10 @@ public:
 	static float Floor(float f);
 	//f以上の最小の整数を返す(小数第一位切り捨て)
 	static int FloorToInt(float f);
+	//fに最も近い小数を返す 10.5などの中間値の場合は10.0が返される
+	static float Round(float f);
+	//fに最も近い整数値を返す 10.5などの中間値の場合は10が返される
+	static int RoundToInt(float f);
 	//線形補完
 	static float Lerp(float a, float b, float t);
 	//[a,b]の範囲内で補完する値valueを生成する

@@ -41,7 +41,7 @@ void GameScene::Release()
 void GameScene::ObjectInitialize()
 {
 	player = new Player();
-	backGround = new BackGround("GamePlay.ogg", &player->transform);
+  	backGround = new BackGround("GamePlay.ogg", &player->transform);
 	//ƒGƒlƒ~[¶¬ˆÊ’u“o˜^
 	spawner = new EnemySpawner();
 }
@@ -72,17 +72,10 @@ void GameScene::SubjectSetting()
 
 #pragma region Enemy
 	//ƒGƒlƒ~[¶¬
-	spawner->OnSpawn()->Subscribe([this](SPAWN_TYPE type) {
-		Enemy* enemy = nullptr;
-		float r = Random::Range(0.0f, 100.0f);
-		if (r <= 20.0f)
-			enemy = new Enemy(new ChaseAI(player), "Enemy02.png", type, 2, 2);
-		else if (r < 60.0f)
-			enemy = new Enemy(new StraightAI(type), "Enemy01.png", type, 1, 1);
-		else if (r <= 70.0f)
-			enemy = new Enemy(new ChaseAI(player), "Enemy03.png", type, 4, 4);
-		else
-			enemy = new Enemy(new StraightAI(type), "Enemy04.png", type, 6, 6);
+	spawner->OnSpawn()->Subscribe([this](char c) {
+
+		float diff = (float)(player->expManager.GetLevel()) / (float)(MAX_LEVEL);
+		Enemy* enemy = spawner->Spawn(player, diff);
 
 		//UŒ‚‚ªƒqƒbƒg‚µ‚½‚Æ‚«‚Ìˆ—“o˜^
 		enemy->OnHit()->Subscribe([this](Transform transform) {
@@ -91,11 +84,11 @@ void GameScene::SubjectSetting()
 		enemy->OnDrop()->Subscribe([this](EnemyHitInfo info) {
 			int exp = info.exp;
 			while (0 < exp) {
-				int gemExp = Random::Range(1, 4);
+				int gemExp = Random::Range(1, (int)Math::Clamp(exp + 1,1,4));
 				ScoreGem* gem = new ScoreGem(player, &info.t, gemExp);
 				gem->OnHit()->Subscribe([this](int e) {
-					player->AddExp(e);
-					canvas.energyGaugeImage->ratio = player->ExpRatio();
+					player->expManager.AddExp(e);
+					canvas.energyGaugeImage->ratio = player->expManager.ExpRatio();
 					});
 				AddGameObject(gem);
 				exp -= gem->GetExp();
@@ -107,7 +100,7 @@ void GameScene::SubjectSetting()
 	AddGameObject(spawner);
 #pragma endregion
 
-	canvas.energyGaugeImage->ratio = player->ExpRatio();
+	canvas.energyGaugeImage->ratio = player->expManager.ExpRatio();
 }
 
 /// <summary>

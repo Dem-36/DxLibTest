@@ -46,3 +46,8 @@ IObservable<Transform>* PlayerAttack::OnShot()
 {
 	return &shotSubject;
 }
+
+void PlayerAttack::UpdateInterval(float interval)
+{
+	shotTimer.limitTime = interval;
+}

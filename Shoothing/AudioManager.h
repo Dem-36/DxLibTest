@@ -26,7 +26,7 @@ private:
 		int handle;
 	};
 private:
-	int currentBGMHandle;
+	int currentBGMHandle = 0;
 	int bgmVolume = 255;
 	int seVolume = 255;
 	std::map<std::string, SoundInfo> soundContainer;

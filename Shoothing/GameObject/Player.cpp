@@ -3,7 +3,6 @@
 #include"../Utility/ResourceManager.h"
 #include"../Utility/Algorithm.h"
 #include"../Screen.h"
-#include"../Math.h"
 #include"../DxLibExpansion.h"
 
 Player::Player()
@@ -20,14 +19,18 @@ Player::~Player()
 
 void Player::Initialize()
 {
-	handle = ResourceManager::Instance()->LoadImageResource("2.png");
+	handle = ResourceManager::Instance()->LoadImageResource("Player.png");
 	transform.position = Vector2(320, 240);
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
 	expManager.Initialize(1, 16, 18);
+	parameter.Initialize(1, 4, 0.35f, 0.2f, 50.0f, 150.0f);
+	playerAttack.UpdateInterval(parameter.shotInterval);
 
 	expManager.OnLevelUp()->Subscribe([this](char c) {
-		playerAttack.NWayShot(30, 360.0f);
+		playerAttack.NWayShot(30, 360);
 		hp = MAX_HP;
+		parameter.UpdateParameter(expManager.GetLevel());
+		playerAttack.UpdateInterval(parameter.shotInterval);
 		levelUpSubject.OnNext(transform);
 		});
 }
@@ -35,9 +38,9 @@ void Player::Initialize()
 void Player::Update()
 {
 	playerMove.Move(transform, Vector2(0.0f, -5.0f));
-	playerAttack.Shot(3, 15.0f);
-	transform.position.x = Math::Clamp(transform.position.x, HALF_SPRITE_X, WINDOW_WIDTH - HALF_SPRITE_X);
-	transform.position.y = Math::Clamp(transform.position.y, HALF_SPRITE_Y, WINDOW_HEIGHT - HALF_SPRITE_Y);
+	playerAttack.Shot(parameter.shotCount, 15);
+	transform.position.x = Math::Clamp(transform.position.x, HALF_SPRITE_X(transform), WINDOW_WIDTH - HALF_SPRITE_X(transform));
+	transform.position.y = Math::Clamp(transform.position.y, HALF_SPRITE_Y(transform), WINDOW_HEIGHT - HALF_SPRITE_Y(transform));
 }
 
 //•`‰æ
@@ -75,15 +78,11 @@ IObservable<Transform>* Player::OnLevelUp()
 	return &levelUpSubject;
 }
 
-void Player::AddExp(int exp)
-{
-	expManager.AddExp(exp);
-}
-
-float Player::ExpRatio() {
-	return expManager.ExpRatio();
-}
-
 float Player::HPRatio() {
 	return hp / MAX_HP;
+}
+
+float Player::DrawDist()const
+{
+	return parameter.drawGem;
 }

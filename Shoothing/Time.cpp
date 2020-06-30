@@ -27,6 +27,7 @@ void Time::SetLimitTime(float limitTime) noexcept
 void Time::Initialize() noexcept
 {
 	currentTime = 0.0f;
+	last = steady_clock::now();
 }
 
 //タイマーの更新
@@ -45,10 +46,6 @@ float Time::GetNowTime() noexcept
 	return currentTime;
 }
 
-float Time::GetLimitTime() noexcept
-{
-	return limitTime;
-}
 
 //deltaTime
 float Time::DeltaTime() noexcept

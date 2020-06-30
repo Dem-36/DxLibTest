@@ -18,7 +18,7 @@ BackGround::~BackGround()
 
 void BackGround::Initialize()
 {
-	handle = ResourceManager::Instance()->LoadImageResource("5.png");
+	handle = ResourceManager::Instance()->LoadImageResource("GameBack.png");
 	api.PlayBGM(bgmHandle);
 }
 

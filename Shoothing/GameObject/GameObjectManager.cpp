@@ -15,7 +15,8 @@ void GameObjectManager::Update()
 	std::list<GameObject*>::iterator itr;
 	for (itr = container.begin(); itr != container.end(); ++itr) {
 		if ((*itr) == NULL ||
-			(*itr)->IsDestroy())
+			(*itr)->IsDestroy() ||
+			!(*itr)->enabled)
 			continue;
 		(*itr)->Update();
 	}
@@ -26,7 +27,8 @@ void GameObjectManager::Draw(Renderer* renderer)
 	std::list<GameObject*>::iterator itr;
 	for (itr = container.begin(); itr != container.end(); ++itr) {
 		if ((*itr) == NULL ||
-			(*itr)->IsDestroy())
+			(*itr)->IsDestroy()||
+			!(*itr)->enabled)
 			continue;
 		(*itr)->Draw(renderer);
 	}
@@ -53,7 +55,8 @@ void GameObjectManager::HitCheck()
 	for (itr = container.begin(); itr != container.end(); ++itr) {
 		//すでに破棄済みなら処理をスキップする
 		if ((*itr) == NULL ||
-			(*itr)->IsDestroy())
+			(*itr)->IsDestroy()||
+			!(*itr)->enabled)
 			continue;
 
 		for (tgt = container.begin(); tgt != container.end(); ++tgt) {

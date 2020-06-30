@@ -10,6 +10,8 @@
 
 using namespace std;
 
+class Enemy;
+
 class EnemySpawner :public GameObject
 {
 public:
@@ -20,10 +22,12 @@ public:
 	void Update();
 	void Draw(Renderer* renderer);
 
-	IObservable<SPAWN_TYPE>* OnSpawn();
+	Enemy* Spawn(GameObject* target, float diff);
+
+	IObservable<char>* OnSpawn();
 
 private:
-	Subject<SPAWN_TYPE> spawnSubject;
+	Subject<char> spawnSubject;
 	float interval_From;
 	float interval_To;
 	Time time{ 1.0f };

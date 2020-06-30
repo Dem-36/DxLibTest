@@ -5,6 +5,8 @@
 #include"Utility\Renderer.h"
 #include"AudioAPI.h"
 
+#define MAX_LEVEL 10
+
 class ExpManager
 {
 public:
@@ -12,20 +14,22 @@ public:
 	void Initialize(int level, int needExpBase, int nextExpInterval);
 	void Draw(Renderer* renderer);
 	void AddExp(int exp);
-	int GetNeedExp(int level);
+	float GetNeedExp(int level);
+	//レベルアップを通知する
 	IObservable<char>* OnLevelUp();
 	float ExpRatio();
+	int GetLevel();
 private:
-	int nextExpBase;
-	int nextExpInterval;
-	int level;
-	int handle;
-	float exp;
-	float prevNeedExp;
-	float needExp;
+	int nextExpBase = 0;
+	int nextExpInterval = 0;
+	int level = 0;
+	int handle = 0;
+	int soundHandle = 0;
+	float exp = 0.0f;
+	float prevNeedExp = 0.0f;
+	float needExp = 0.0f;
 	Subject<char> levelUpSubject;
 	AudioAPI api;
-	int soundHandle;
 };
 
 #endif

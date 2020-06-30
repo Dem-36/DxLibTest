@@ -8,6 +8,7 @@
 #include"../AudioAPI.h"
 #include"../PlayerMove.h"
 #include"../PlayerAttack.h"
+#include"../Math.h"
 
 #define MAX_HP 5.0f
 
@@ -24,10 +25,10 @@ public:
 	IObservable<Transform>* OnHit();
 	IObservable<Transform>* OnDead();
 	IObservable<Transform>* OnLevelUp();
-	void AddExp(int exp);
-	float ExpRatio();
 	float HPRatio();
+	float DrawDist()const;
 public:
+	ExpManager expManager;
 	PlayerAttack playerAttack;
 private:
 	Subject<Transform> hitSubject;
@@ -36,8 +37,37 @@ private:
 	PlayerMove playerMove;
 	int handle;
 	float hp;
-	ExpManager expManager;
 	AudioAPI api;
+
+	struct PlayerParameter {
+		void Initialize(int scFrom,int scTo,float siFrom,float siTo,float dgFrom,float dgTo) {
+			shotCount = scFrom;
+			shotCountFrom = scFrom;
+			shotCountTo = scTo;
+			shotInterval = siFrom;
+			shotIntervalFrom = siFrom;
+			shotIntervalTo = siTo;
+			drawGem = dgFrom;
+			drawGemFrom = dgFrom;
+			drawGemTo = dgTo;
+		}
+		void UpdateParameter(int level) {
+			float t = (float)(level - 1) / (MAX_LEVEL - 1);
+
+			shotCount =Math::RoundToInt(Math::Lerp(shotCountFrom, shotCountTo, t));
+			shotInterval = Math::Lerp(shotIntervalFrom, shotIntervalTo, t);
+			drawGem = Math::Lerp(drawGemFrom, drawGemTo, t);
+		}
+		int shotCount;
+		int shotCountFrom;
+		int shotCountTo;
+		float shotInterval;
+		float shotIntervalFrom;
+		float shotIntervalTo;
+		float drawGem;
+		float drawGemFrom;
+		float drawGemTo;
+	}parameter;
 };
 
 #endif

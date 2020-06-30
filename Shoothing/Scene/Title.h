@@ -4,6 +4,7 @@
 #include"IScene.h"
 #include"SceneManager.h"
 #include"../AudioAPI.h"
+#include"../TitleCanvas.h"
 
 class Title:public IScene
 {
@@ -15,6 +16,7 @@ public:
 private:
 	int handle;
 	AudioAPI api;
+	TitleCanvas titleCanvas;
 };
 
 #endif

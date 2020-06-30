@@ -17,7 +17,8 @@ public:
 		std::list<GameObject*>::iterator itr;
 		for (itr = uiContainer.begin(); itr != uiContainer.end(); ++itr) {
 			if ((*itr) == NULL ||
-				(*itr)->IsDestroy())
+				(*itr)->IsDestroy()||
+				!(*itr)->enabled)
 				continue;
 			(*itr)->Update();
 		}
@@ -27,7 +28,8 @@ public:
 		std::list<GameObject*>::iterator itr;
 		for (itr = uiContainer.begin(); itr != uiContainer.end(); ++itr) {
 			if ((*itr) == NULL ||
-				(*itr)->IsDestroy())
+				(*itr)->IsDestroy()||
+				!(*itr)->enabled)
 				continue;
 			(*itr)->Draw(renderer);
 		}

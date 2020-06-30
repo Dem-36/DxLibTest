@@ -7,7 +7,7 @@
 #include"DxLibExpansion.h"
 #include"Utility\ResourceManager.h"
 
-ScoreGem::ScoreGem(GameObject* player,const Transform* transform, int exp)
+ScoreGem::ScoreGem(Player* player,const Transform* transform, int exp)
 	:player(player), m_exp(exp)
 {
 	this->transform.position = transform->position;
@@ -29,9 +29,8 @@ void ScoreGem::Initialize()
 
 void ScoreGem::Update()
 {
-
 	float dist = Vector2::Distance(transform.position, player->transform.position);
-	if (dist < 100.0f) {
+	if (dist < player->DrawDist()) {
 		Vector2 direction = player->transform.position - transform.position;
 		direction.Normalize();
 		transform.position += direction * 8.0f;
@@ -40,10 +39,10 @@ void ScoreGem::Update()
 
 	time.Update();
 	transform.position += velocity * speed;
-	speed = Easing::QuadraticOut(time.GetNowTime(), time.GetLimitTime(), speed, 0.0f);
+	speed = Easing::QuadraticOut(time.GetNowTime(), time.limitTime, speed, 0.0f);
 
-	transform.position.x = Math::Clamp(transform.position.x, 0.0f, WINDOW_WIDTH + HALF_SPRITE_X);
-	transform.position.y = Math::Clamp(transform.position.y, 0.0f, WINDOW_HEIGHT + HALF_SPRITE_Y);
+	transform.position.x = Math::Clamp(transform.position.x, 0.0f, WINDOW_WIDTH + HALF_SPRITE_X(transform));
+	transform.position.y = Math::Clamp(transform.position.y, 0.0f, WINDOW_HEIGHT + HALF_SPRITE_Y(transform));
 }
 
 void ScoreGem::Draw(Renderer* renderer)

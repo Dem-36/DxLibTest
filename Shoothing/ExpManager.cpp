@@ -3,7 +3,8 @@
 #include"Screen.h"
 #include<string>
 
-ExpManager::ExpManager() {}
+ExpManager::ExpManager()
+{}
 
 void ExpManager::Initialize(int level, int nextExpBase, int nextExpInterval)
 {
@@ -26,6 +27,8 @@ void ExpManager::AddExp(int exp)
 	this->exp += exp;
 	if (this->exp < needExp)
 		return;
+	if (level >= MAX_LEVEL)
+		return;
 
 	level++;
 	api.PlaySE(soundHandle);
@@ -34,9 +37,9 @@ void ExpManager::AddExp(int exp)
 	levelUpSubject.OnNext(' ');
 }
 
-int ExpManager::GetNeedExp(int level)
+float ExpManager::GetNeedExp(int level)
 {
-	return nextExpBase + nextExpInterval * ((level - 1) * (level - 1));
+	return (float)(nextExpBase + nextExpInterval * ((level - 1) * (level - 1)));
 }
 
 IObservable<char>* ExpManager::OnLevelUp()
@@ -51,4 +54,9 @@ IObservable<char>* ExpManager::OnLevelUp()
 float ExpManager::ExpRatio()
 {
 	return (exp - prevNeedExp) / (needExp - prevNeedExp);
+}
+
+int ExpManager::GetLevel()
+{
+	return level;
 }

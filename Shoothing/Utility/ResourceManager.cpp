@@ -44,11 +44,19 @@ int* ResourceManager::LoadAminImageResource(std::string fileName, int allNum, in
 //フォントデータの作成、登録
 int ResourceManager::LoadFontResource(std::string fileName, int fontSize, int thick)
 {
-	if (resourceMap.find(fileName) == resourceMap.end())
-		resourceMap[fileName] = CreateFontToHandle(fileName.c_str(), fontSize,  thick);
-
-	if (resourceMap[fileName] == -1)
-		DX_RESOURCE_EXCEPT(fileName);
-
-	return resourceMap[fileName];
+	//読み込み時、同一情報のフォントがあるかどうかを調べる
+	std::map<FontData, int>::iterator itr;
+	for (itr = fontMap.begin(); itr != fontMap.end(); ++itr)
+	{
+		if (itr->first.fontName == fileName &&
+			itr->first.fontSize == fontSize &&
+			itr->first.thick == thick) {
+			return itr->second;
+		}
+	}
+	//ない場合は新規作成
+	int handle = CreateFontToHandle(fileName.c_str(), fontSize, thick);
+	FontData data(fileName, fontSize, thick);
+	fontMap.emplace(data,handle);
+	return handle;
 }

@@ -21,7 +21,6 @@ void Bullet::Initialize()
 {
 	handle = ResourceManager::Instance()->LoadImageResource("Bullet.png");
 	transform.spriteSize = DxLibExpansion::GetSpriteSize(handle);
-	int a;
 }
 
 void Bullet::Update()

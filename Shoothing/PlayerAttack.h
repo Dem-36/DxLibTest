@@ -14,10 +14,14 @@ public:
 	PlayerAttack(const GameObject* player);
 	~PlayerAttack() = default;
 
+	//’e‚ğ”­Ë‚·‚é
 	void Shot(int shotCount, int shotRange);
 	//NWay shotCount = Ëo‚·‚é’e‚Ì” shotRange = ”ÍˆÍ
 	void NWayShot(int shotCount, int shotRange);
+	//UŒ‚‚µ‚½‚±‚Æ‚ğ’Ê’m‚·‚é
 	IObservable<Transform>* OnShot();
+	//UŒ‚ŠÔŠu‚ÌXV
+	void UpdateInterval(float interval);
 private:
 	Subject<Transform> shotSubject;
 	Time shotTimer = { SHOT_DELAYTIME };

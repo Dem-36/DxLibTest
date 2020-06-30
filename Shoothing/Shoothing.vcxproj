@@ -171,7 +171,9 @@
     <ClCompile Include="ResourceException.cpp" />
     <ClCompile Include="ScoreGem.cpp" />
     <ClCompile Include="StraightAI.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="TitleCanvas.cpp" />
     <ClCompile Include="Utility\Collision.cpp" />
     <ClCompile Include="GameObject\Enemy.cpp" />
     <ClCompile Include="GameObject\EnemySpawner.cpp" />
@@ -204,6 +206,7 @@
     <ClInclude Include="ErrorExceptionMacro.h" />
     <ClInclude Include="ExpManager.h" />
     <ClInclude Include="FadeManager.h" />
+    <ClInclude Include="FontData.h" />
     <ClInclude Include="GameSceneCanvas.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Math.h" />
@@ -214,7 +217,9 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpawnType.h" />
     <ClInclude Include="StraightAI.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TitleCanvas.h" />
     <ClInclude Include="Utility\Algorithm.h" />
     <ClInclude Include="GameObject\BackGround.h" />
     <ClInclude Include="GameObject\Bomb.h" />

@@ -8,15 +8,15 @@
 using namespace std;
 
 //画像幅の半分を返す
-#define HALF_SPRITE_X ((transform.spriteSize.x) / (2.0f))
+#define HALF_SPRITE_X(t) ((t.spriteSize.x) / (2.0f))
 //画像の高さの半分を返す
-#define HALF_SPRITE_Y ((transform.spriteSize.y) / (2.0f))
+#define HALF_SPRITE_Y(t) ((t.spriteSize.y) / (2.0f))
 
 class GameObject {
 public:
 	//コンストラクタ
 	GameObject():
-		isDestroy(false){}
+		isDestroy(false),enabled(true){}
 
 	//デストラクタ(仮想関数)
 	virtual ~GameObject() {}
@@ -46,6 +46,7 @@ public:
 public:
 	Transform transform;
 	string tag;        //タグ
+	bool enabled;
 private:
 	//削除フラグ
 	bool isDestroy;

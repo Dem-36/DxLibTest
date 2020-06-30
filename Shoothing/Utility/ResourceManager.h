@@ -5,6 +5,7 @@
 #include<map>
 #include"DxLib.h"
 #include"../Singleton.h"
+#include"../FontData.h"
 
 //Flywrightパターンを利用したリソース管理クラス
 class ResourceManager:public Singleton<ResourceManager>
@@ -17,6 +18,7 @@ public:
 private:
 	//リソースのハンドラを格納する
 	std::map<std::string, int> resourceMap;
+	std::map<FontData, int> fontMap;
 	std::map<std::string, int*> animMap;
 };
 #endif

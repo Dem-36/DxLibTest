@@ -14,13 +14,14 @@ public:
 	void Update()noexcept;
 	bool IsTime()noexcept;
 	float GetNowTime()noexcept;
-	float GetLimitTime()noexcept;
 	float DeltaTime()noexcept;
 	float Peek()const noexcept;
+public:
+	float limitTime;
 private:
 	std::chrono::steady_clock::time_point last;
 	float currentTime;
-	float limitTime;
+	//float limitTime;
 };
 
 #endif

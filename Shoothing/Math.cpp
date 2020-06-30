@@ -92,6 +92,16 @@ int Math::FloorToInt(float f)
 	return static_cast<int>(Floor(f));
 }
 
+float Math::Round(float f)
+{
+	return std::round(f);
+}
+
+int Math::RoundToInt(float f)
+{
+	return static_cast<int>(Round(f));
+}
+
 float Math::Lerp(float a, float b, float t)
 {
 	return a + t * (b - a);

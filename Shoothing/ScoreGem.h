@@ -5,11 +5,12 @@
 #include"Time.h"
 #include"Animation.h"
 #include"Subject.h"
+#include"GameObject\Player.h"
 
 class ScoreGem :public GameObject
 {
 public:
-	ScoreGem(GameObject* player, const Transform* transform, int exp);
+	ScoreGem(Player* player, const Transform* transform, int exp);
 	void Initialize();
 	void Update();
 	void Draw(Renderer* renderer);
@@ -23,6 +24,6 @@ private:
 	float speed;
 	Animation anim;
 	Subject<int> hitSubject;
-	const GameObject* player;
+	const Player* player;
 };
 #endif

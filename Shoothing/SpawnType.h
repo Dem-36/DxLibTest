@@ -5,7 +5,7 @@ enum class SPAWN_TYPE {
 	UP = 0,
 	DOWN,
 	RIGHT,
-	LEFT
+	LEFT,
 };
 
 #endif
